@@ -45,14 +45,20 @@ Diese Fragen decken ein breites Spektrum an Wissen zu „The Three Ways“ ab un
    Entwicklungszyklen und einer besseren Produktqualität.
 
 #### 6. **Wie kann das Konzept des „Amplify Feedback Loops“ die Qualität des Codes verbessern?**  
-   Untersuchen Sie, wie verstärkte Feedback-Schleifen zu schnellerer Fehlererkennung und -behebung sowie zu höherer Codequalität führen können.
+   Verstärkte Feedback-Schleifen sorgen dafür, dass Fehler schnell behoben werden können. Durch automatisierte Tests, Code-Reviews und 
+   Monitoring erhalten Entwickler sofort Rückmeldungen zu ihren Änderungen. Das führt zu höherer Codequalität, weil Probleme nicht erst in der Produktion 
+   sichtbar werden. Bei TechNova sank die Zahl der Produktionsfehler deutlich, nachdem Feedback-Prozesse automatisiert wurden.
 
 #### 7. **Welche Rolle spielen Experimente im „Third Way“ und wie sollten sie idealerweise durchgeführt werden?**  
-   Erörtern Sie die Bedeutung von Experimenten und wie sie strukturiert und sicher im Entwicklungsprozess eingebunden werden können.
+   Experimente fördern Innovation und kontinuierliches Lernen, indem Teams neue Ansätze risikofrei testen können. Sie sollten klein, kontrolliert und messbar 
+   durchgeführt werden, um gezielte Erkenntnisse zu gewinnen. Dabei helfen Hypothesen, Testumgebungen und klare Erfolgskriterien. Bei TechNova wurden 
+   beispielsweise verschiedene Deployment-Tools ausprobiert, um die effizienteste Lösung zu identifizieren.
 
 #### 8. **Welche Herausforderungen können beim Implementieren des „Systems Thinking“ auftreten und wie können diese überwunden werden?**  
-   Identifizieren Sie potenzielle Hindernisse bei der Einführung des „Systems Thinking“ und entwickeln Sie Strategien, um diese zu überwinden.
-
+   Herausforderungen entstehen häufig durch Silo-Denken, Widerstand gegen Veränderung und mangelndes Prozessverständnis. Viele Mitarbeitende sind an ihre 
+   gewohnten Strukturen gewöhnt und weichen zusätzlichen Aufwand aus. Diese Hürden lassen sich durch Schulungen und transparente Kommunikation abbauen. 
+   Führungskräfte sollten den Wandel aktiv unterstützen, um Akzeptanz und Zusammenarbeit zu fördern.
+   
 #### 9. **Analysieren Sie, wie die Prinzipien der „Three Ways“ die Zusammenarbeit zwischen Entwicklungsteams und Betriebsteams verbessern können.**  
    Diskutieren Sie, wie die Anwendung der „Three Ways“ zu einer besseren Integration und Zusammenarbeit der Teams führen kann.
 
