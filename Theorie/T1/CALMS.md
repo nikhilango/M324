@@ -20,6 +20,7 @@ TechNova hatte langsame Entwicklungsprozesse, langsame Reaktion auf Kundenfeedba
 ### 2. Wie wurde die kulturelle Veränderung bei TechNova angegangen und welche konkreten Maßnahmen wurden ergriffen?
 
 Die Transformation begann mit einem Fokus auf die Unternehmenskultur. Dafür wurden Workshops, Teambuilding-Aktivitäten und ein Rotationsprogramm eingeführt. Somit wurde die Zusammenarbeit und Kommunikation zwischen den Abteilungen verbessert.
+
 ---
 
 ### 3. Welche Arten von Automatisierung wurden eingeführt und wie beeinflussten diese die Arbeitsprozesse?
