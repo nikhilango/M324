@@ -36,6 +36,9 @@ Diese Fragen decken ein breites Spektrum an Wissen zu „The Three Ways“ ab un
 #### 2. **Was beschreibt der „First Way: Systems Thinking“?**  
    Erläutern Sie, wie das „Systems Thinking“ die Sichtweise auf den gesamten Workflow und die Zusammenarbeit zwischen den Teams verändern kann.
 
+**Antwort:** ¨The First Way: Systems Thinking¨, bedeutet, auf den gesamten Prozess des Projektes zu schauen, statt nur auf seine eigene Abteilung. Es nützt nichts, wenn die Entwicklung schnell den Code liefert, wenn sie damit die anderen Abteilungen überlasten und diese zum Engpass werden. Das Ziel ist vielmehr, den gesamten Fluss des Projektes zu optimieren. Wenn das richtig eingehalten wird, dann führt es dazu, dass das Projekt schneller und stabiler aufgesetzt wird.
+***
+
 #### 3. **Welche Hauptkomponenten gehören zum „Second Way: Amplify Feedback Loops“?**  
    Identifizieren Sie die wesentlichen Elemente, die notwendig sind, um Feedback-Schleifen zu verstärken, und diskutieren Sie ihre Bedeutung.
 
