@@ -84,6 +84,7 @@ Diese Fragen decken ein breites Spektrum an Wissen zu „The Three Ways“ ab un
    Regelmäßige Retrospektiven helfen, Prozesse und Zusammenarbeit stetig zu verbessern.
    Durch offenes Feedback und Wissensaustausch wächst das gegenseitige Vertrauen zwischen den Teams.
    Dadurch entsteht eine langfristige Verbesserung von Zusammenarbeit, Qualität und Innovation.
+   ***
 
 #### 10. **Entwickeln Sie einen Plan zur Implementierung von „The Three Ways“ in einem Unternehmen, das noch keine DevOps-Praktiken eingeführt hat.**  
    1. Erster Weg – Flow aufbauen
@@ -103,6 +104,7 @@ Diese Fragen decken ein breites Spektrum an Wissen zu „The Three Ways“ ab un
    Fehler werden als Chance gesehen, Prozesse und Systeme zu verbessern.
    Retrospektiven, Schulungen und Wissensaustausch zwischen Entwicklung und Betrieb fördern kontinuierliches Lernen.
    Langfristig führt dies zu mehr Vertrauen, Eigenverantwortung und Innovation in den Teams.
+   ***
 
 #### 11. **Bewerten Sie die Auswirkungen von „The Second Way: Amplify Feedback Loops“ auf die Fehlerbehebung und kontinuierliche Verbesserung in einem agilen 
    Der „Second Way“ verbessert im agilen Entwicklungsprozess die Fehlererkennung und -behebung durch schnelle Rückmeldungen zwischen Entwicklung und Betrieb.
@@ -110,7 +112,8 @@ Diese Fragen decken ein breites Spektrum an Wissen zu „The Three Ways“ ab un
    Das Team kann schneller reagieren und Lösungen umsetzen, was die Qualität der Software deutlich erhöht.
    Gleichzeitig entsteht eine Kultur der Offenheit, in der Feedback als Chance zur Verbesserung gesehen wird.
    Dies führt langfristig zu einer kontinuierlichen Optimierung von Prozessen und Produkten.
-
+   ***
+   
 #### 12. **Erörtern Sie, wie die Prinzipien von „The Three Ways“ in einer Organisation, die stark hierarchisch strukturiert ist, umgesetzt werden können.**  
    In einer stark hierarchischen Organisation ist es wichtig, zunächst offene Kommunikation und bereichsübergreifende Zusammenarbeit zu fördern.
    Der erste Weg kann durch gemeinsame Prozesse und automatisierte Workflows eingeführt werden, um Abhängigkeiten zwischen Hierarchieebenen zu reduzieren.
