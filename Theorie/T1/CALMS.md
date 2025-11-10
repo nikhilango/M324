@@ -41,23 +41,32 @@ TechNova führte ein Metriken-System ein, bei dem sie KPIs wie Deployment-Freque
 
 ---
 
+
 ### 6. Welche Methoden nutzte TechNova, um Wissensaustausch und Zusammenarbeit zu fördern?
 
----
-
+- Internes Wiki eingerichtet
+- regelmässige "Lunch and Learn"-Sessions organisieren
+- Mitarbeiter ermutigten, auf Konferenzen zu sprechen und Blogbeiträge zu schreiben
+  
 ### 7. Welche Herausforderungen traten während der Transformation auf und wie wurden diese bewältigt?
 
----
+Einige langjährige Mitarbeitende waren skeptisch gegenüber den neuen Arbeitsweisen und Automatisierungstools. Anfangs gab es technische Rückschläge und Anpassungsschwierigkeiten. Durch intensiver arbeit und positiven Ergebnissen ging es einfacher.
 
 ### 8. Wie lange dauerte der Transformationsprozess und welche messbaren Verbesserungen konnten nach 18 Monaten festgestellt werden?
 
----
+Die Transformation dauerte 18 Monate. 
+Danach stieg die Deployment-Frequenz von halbjährlichen auf wöchentliche Releases.
+Mitarbeiterzufriedenheit verbesserten sich deutlich, da die automatisierung zu weniger Stress führten. 
+Außerdem konnten Kundenanforderungen wesentlich schneller umgesetzt werden.
 
 ### 9. Wie hat sich die DevOps-Transformation auf die Kundenzufriedenheit und die Wettbewerbsposition von TechNova ausgewirkt?
 
----
+Die Kundenzufriedenheit verbesserte sich erheblich, da das Feedback schneller umgesetzt werden konnte.
+Da das Unternehmen schnelleren Reaktion zu feedback und häufigeren Updates machen kann, verbesserte sich die Wettbewerbposition.
 
 ### 10. Welche Rolle spielte die CEO, Maria Schmidt, in der erfolgreichen Umsetzung des CALMS-Modells?
 
----
+Maria Schmidt erkannte, dass die traditionelle Arbeitsweise nicht mehr reichte.
+Sie hat alles initialisiert und organisiert, damit das Unternehmen die neuen Methoden anwenden kann.
+
 
