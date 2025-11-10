@@ -8,7 +8,7 @@
 - []()
 
 ## Externe Links
-- [Zeitlogging]()
+- [Zeitlogging](https://docs.google.com/spreadsheets/d/16aDWldLnci9tl7N4sXj54Rdh8ixXuOqP5hKHcoLaXv4/edit?usp=sharing)
 
 - [Lernjournal Oscar]()
 - [Lernjournal Nikhil]()
