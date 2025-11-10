@@ -1,7 +1,7 @@
 # M324
 
 ## Theorie
-- [T1: Calms](Theorie/CALMS.md)
+- [T1: Calms](Theorie/CALMS/CALMS.md)
 - []()
 
 ## Themenblöcke
