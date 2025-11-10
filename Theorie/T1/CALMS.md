@@ -15,32 +15,21 @@ Die folgende Fallstudie beschreibt den Prozess, die Maßnahmen und die Ergebniss
 
 TechNova hatte langsame Entwicklungsprozesse, langsame Reaktion auf Kundenfeedback und mangelnde Softwarequalität. Die Entwicklungs-, Test- und Betriebsteams waren isoliert voneinander und somit führte dies zu einer schlechten Teamarbeit und Kommunikationsproblemen. Ausserdem waren viele Prozesse wie Tests und Deployments manuell, was häufige Fehler und Verzögerung verursachte.
 
----
-
 ### 2. Wie wurde die kulturelle Veränderung bei TechNova angegangen und welche konkreten Maßnahmen wurden ergriffen?
 
 Die Transformation begann mit einem Fokus auf die Unternehmenskultur. Dafür wurden Workshops, Teambuilding-Aktivitäten und ein Rotationsprogramm eingeführt. Somit wurde die Zusammenarbeit und Kommunikation zwischen den Abteilungen verbessert.
-
----
 
 ### 3. Welche Arten von Automatisierung wurden eingeführt und wie beeinflussten diese die Arbeitsprozesse?
 
 Es wurden eine automatisierte CI/CD-Pipeline ein, welche Build-, Test- und Deployment-Prozesse stark beschleunigte. Damit konnten mehr neue Features ausgeliefert werden, welche auch zuverlässig waren. Die Automatisierung reduzierte manuelle Fehler und entlastete auch Mitarbeiter.
 
----
-
 ### 4. Wie wurden Lean-Prinzipien in die Transformation integriert und welche spezifischen Tools oder Methoden wurden verwendet?
 
 TechNova nutzte Kanban-Boards, um den Arbeitsfluss sichtbar zu machen. So konnten Engpässe leichter erkannt werden. Dies wurde auch regelmässig verbessert um den optimalen Workflow zu haben und Prozesse schlanker und klarer zu machen. Ausserdem wurden auch „Gemma Walks“ durchgeführt, dabei beobachteten Fèhrungskräfte den tatsächlichen Arbeitsprozess, um Verbesserungsmöglichkeiten zu identifizieren.
 
----
-
 ### 5. Welche Metriken wurden eingeführt, um den Fortschritt zu messen, und wie wurden diese genutzt?
 
 TechNova führte ein Metriken-System ein, bei dem sie KPIs wie Deployment-Frequenz, Lead Time für Änderungen und Mean Time to Recovery (MTTR) zu tracken. Diese Metriken benutzt um Engpässe zu identifizieren und die Wirksamkeit ihrer Verbesserungsmassnahmen zu quantifizieren.
-
----
-
 
 ### 6. Welche Methoden nutzte TechNova, um Wissensaustausch und Zusammenarbeit zu fördern?
 
