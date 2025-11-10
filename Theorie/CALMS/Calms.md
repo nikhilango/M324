@@ -51,14 +51,3 @@ Die folgende Fallstudie beschreibt den Prozess, die Maßnahmen und die Ergebniss
 
 ---
 
-## Bewertungskriterien
-
-| Kriterium | Beschreibung |
-|------------|--------------|
-| **Inhaltliche Vollständigkeit** | Alle Fragen wurden vollständig und nachvollziehbar beantwortet |
-| **Korrektheit** | Antworten spiegeln Verständnis des CALMS-Modells wider |
-| **Struktur** | Übersichtliches, konsistentes Markdown-Layout |
-| **Tiefe der Analyse** | Begründungen und Zusammenhänge sind klar dargestellt |
-| **Pünktlichkeit** | Datei ist bis Tag 01 im Repository verfügbar |
-
----
