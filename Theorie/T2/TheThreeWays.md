@@ -40,7 +40,9 @@ Diese Fragen decken ein breites Spektrum an Wissen zu „The Three Ways“ ab un
    Diskutieren Sie die Bedeutung von kontinuierlichem Lernen und Experimentieren für die Innovationskraft und Anpassungsfähigkeit eines Unternehmens.
 
 5. **Wie trägt „The First Way: Systems Thinking“ zur Verbesserung des Softwareentwicklungsprozesses bei?**  
-   Analysieren Sie, wie eine ganzheitliche Sichtweise auf das System zur Effizienzsteigerung und Fehlerreduktion beitragen kann.
+   Systems Thinking betrachtet das gesamte System. Dadurch werden Engpässe und ineffiziente Abläufe früh erkannt und beseitigt. Die enge Zusammenarbeit
+   zwischen Entwicklung, Test und Betrieb reduziert Fehlerquellen und beschleunigt Releases. Bei TechNova führte diese Sichtweise zu kürzeren
+   Entwicklungszyklen und einer besseren Produktqualität.
 
 6. **Wie kann das Konzept des „Amplify Feedback Loops“ die Qualität des Codes verbessern?**  
    Untersuchen Sie, wie verstärkte Feedback-Schleifen zu schnellerer Fehlererkennung und -behebung sowie zu höherer Codequalität führen können.
