@@ -20,15 +20,8 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
   Regelmäßige Reviews stellen sicher, dass jede Phase korrekt abgeschlossen wird.
 
 #### Quellen
-[IBM: What is SDLC?](https://www.ibm.com/topics/software-development-life-cycle)
 [GeeksForGeeks: Software Development Life Cycle](https://www.geeksforgeeks.org/software-development-life-cycle-sdlc/)
-[Microsoft Learn: Application Lifecycle Management Overview](https://learn.microsoft.com/en-us/devops/plan/what-is-alm)
-[Atlassian: Software Development Lifecycle](https://www.atlassian.com/software-development/software-development-life-cycle)
-[IBM Cloud Education: SDLC Phases](https://www.ibm.com/cloud/learn/sdlc)
-[ISO/IEC 12207 – Software Lifecycle Processes](https://www.iso.org/standard/63712.html)
-[PMI – Project Management Body of Knowledge (PMBOK)](https://www.pmi.org/pmbok-guide-standards/foundational/pmbok)
-[Atlassian Jira Guide](https://www.atlassian.com/software/jira/guides)
-[IEEE Software Lifecycle Standards Übersicht](https://standards.ieee.org/ieee/12207/5355/)
+[What is SDLC Video](https://www.youtube.com/watch?v=Fi3_BjVzpqk&t=1s)
 
 ---
 
