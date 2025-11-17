@@ -55,7 +55,7 @@ Die **Kernphasen**:
 * **7. Observe:** Probleme identifizieren und beheben. Team über Änderungen oder Ausfällen informieren, um Services weiter am Laufen zu halten.
 * **8. Continuous Feedback:** Durch kontinuierliches Feedback können Teams ihre Prozesse optimieren und Kundenrückmeldungen einbeziehen, um den nächsten Release zu verbessern.
 
-![DevOps_LifeCycle]()
+![DevOps_LifeCycle](https://github.com/nikhilango/M324/blob/main/Images/T3_DevOpsLifeCycle.png)
 
 #### Ziele im Vergleich zu traditionellen Entwicklungsansätzen
 
