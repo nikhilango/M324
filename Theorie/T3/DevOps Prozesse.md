@@ -46,13 +46,13 @@ miteinander. Es fördert ständige Zusammenarbeit, Automatisierung und Iteration
 
 Die **Kernphasen**:
 
-* **1. Discover:** Zur Vorbereitung auf den nächsten Sprint müssen Teams Ideen finden, organisieren und priorisieren. Agile kann DevOps-Teams dabei als Orientierung dienen
-* **2. Plan:** Definition der Funktionen, Services und Ziele. Planung der Arbeitsabläufe, oft agil, um die Qualität und Geschwindigkeit zu verbessern.
+* **1. Discover:** Zur Vorbereitung auf den nächsten Sprint müssen Teams Ideen finden, organisieren und priorisieren. Agile kann DevOps-Teams dabei als Orientierung dienen. (Beispiel: Workshops aufsetzen)
+* **2. Plan:** Definition der Funktionen, Services und Ziele. Planung der Arbeitsabläufe, oft agil, um die Qualität und Geschwindigkeit zu verbessern. 
 * **3. Build:** Schreiben und Speichern des Programmcodes in der Versionskontrolle (z.B. Git).
 * **4. Test:** Tiefgreifendere automatisierte und manuelle Tests (Performance, Sicherheit) in separaten Umgebungen.
-* **5. Deploy:** Automatisierte Bereitstellung der Artefakte in den Produktionsumgebungen. Dank CD können Teams regelmässig und automatisch Funktionen veröffentlichen 
-* **6. Operate:** Der Betrieb der Anwendung in der Live-Umgebung.
-* **7. Observe:** Probleme identifizieren und beheben. Team über Änderungen oder Ausfällen informieren, um Services weiter am Laufen zu halten.
+* **5. Deploy:** Automatisierte Bereitstellung der Artefakte in den Produktionsumgebungen. Dank CD können Teams regelmässig und automatisch Funktionen veröffentlichen. (z.B. Terraform)
+* **6. Operate:** Der Betrieb der Anwendung in der Live-Umgebung. (z.B. Ansible)
+* **7. Observe:** Probleme identifizieren und beheben. Team über Änderungen oder Ausfällen informieren, um Services weiter am Laufen zu halten. (z.B. Prometheus)
 * **8. Continuous Feedback:** Durch kontinuierliches Feedback können Teams ihre Prozesse optimieren und Kundenrückmeldungen einbeziehen, um den nächsten Release zu verbessern.
 
 ![DevOps_LifeCycle](https://github.com/nikhilango/M324/blob/main/Images/T3_DevOpsLifeCycle.png)
