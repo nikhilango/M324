@@ -41,8 +41,7 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 
 ## 3. Unterschiede zwischen SDLC und DevOps Lifecycle
 
-## Vergleich: SDLC vs. DevOps Lifecycle
-
+### Vergleich: SDLC vs. DevOps Lifecycle
 ### Ansatz & Denkweise
 
 | Aspekt | SDLC | DevOps Lifecycle |
@@ -56,10 +55,10 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 ## Prozesse & Phasen
 
 ### SDLC:
-**Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung**
+Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung
 
 ### DevOps-Kreislauf:
-**Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan**
+Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan
 
 
 ## Ziele
