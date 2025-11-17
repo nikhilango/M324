@@ -39,9 +39,9 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 
 ---
 
-### 3. Unterschiede zwischen SDLC und DevOps Lifecycle
+## 3. Unterschiede zwischen SDLC und DevOps Lifecycle
 
-### Vergleich: SDLC vs. DevOps Lifecycle
+## Vergleich: SDLC vs. DevOps Lifecycle
 
 ### Ansatz & Denkweise
 
@@ -53,16 +53,16 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 | **Arbeitsweise** | Linear/sequentiell oder iterativ | Kontinuierlicher Kreislauf |
 | **Feedback** | Spät | Früh und dauerhaft |
 
-### Prozesse & Phasen
+## Prozesse & Phasen
 
-#### SDLC:
+### SDLC:
 **Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung**
 
-#### DevOps-Kreislauf:
+### DevOps-Kreislauf:
 **Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan**
 
 
-### Ziele
+## Ziele
 
 | SDLC | DevOps |
 |------|--------|
@@ -71,9 +71,9 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 | Minimierung von Risiken | Verkürzte Release-Zyklen |
 
 
-### Auswirkungen auf Entwicklung, Bereitstellung und Betrieb
+## Auswirkungen auf Entwicklung, Bereitstellung und Betrieb
 
-#### 1. Entwicklung
+### 1. Entwicklung
 
 **SDLC:**  
 Planungsgetrieben, Releases eher selten.
@@ -81,7 +81,7 @@ Planungsgetrieben, Releases eher selten.
 **DevOps:**  
 Kleine, schnelle Iterations (Continuous Integration).
 
-#### 2. Bereitstellung
+### 2. Bereitstellung
 
 **SDLC:**  
 Deployment oft erst am Ende.
@@ -89,7 +89,7 @@ Deployment oft erst am Ende.
 **DevOps:**  
 Automatisiert über CI/CD-Pipelines; teilweise mehrere Deployments täglich.
 
-#### 3. Betrieb
+### 3. Betrieb
 
 **SDLC:**  
 Betrieb separat, Feedback kommt spät.
@@ -97,7 +97,8 @@ Betrieb separat, Feedback kommt spät.
 **DevOps:**  
 Monitoring und Logs fließen direkt in Verbesserungen ein.
 
-### Quellen
+
+## Quellen
 
 - https://www.geeksforgeeks.org/software-development-life-cycle-sdlc
 - https://medium.com/@nalawade1000work/sdlc-vs-devops-25ff2dd0accf
