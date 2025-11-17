@@ -30,13 +30,82 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 [Atlassian Jira Guide](https://www.atlassian.com/software/jira/guides)
 [IEEE Software Lifecycle Standards Übersicht](https://standards.ieee.org/ieee/12207/5355/)
 
+
 ### 2. Was ist der DevOps Lifecycle, und wie ist er strukturiert?
 - Wie ist der DevOps Lifecycle definiert, und welche Kernphasen beinhaltet er?  
-- Welche Ziele verfolgt der DevOps Lifecycle im Vergleich zu traditionellen Entwicklungsansätzen?  
+- Welche Ziele verfolgt der DevOps Lifecycle im Vergleich zu traditionellen Entwicklungsansätzen?
 
-### 3. Welche Unterschiede gibt es zwischen dem SDLC und dem DevOps Lifecycle?
-- Wie unterscheiden sich die Ansätze, Prozesse und Ziele dieser beiden Modelle?  
-- Welche Auswirkungen haben diese Unterschiede auf die Entwicklung, Bereitstellung und den Betrieb von Software?  
+
+
+---
+
+### 3. Unterschiede zwischen SDLC und DevOps Lifecycle
+
+### Vergleich: SDLC vs. DevOps Lifecycle
+
+### Ansatz & Denkweise
+
+| Aspekt | SDLC | DevOps Lifecycle |
+|--------|------|------------------|
+| **Ziel** | Fertiges Produkt nach definiertem Prozess | Schnelle, stabile und kontinuierliche Releases |
+| **Fokus** | Entwicklung | Entwicklung + Betrieb |
+| **Teamstruktur** | Trennung zwischen Entwicklung & Betrieb | Gemeinsame Verantwortung (“You build it, you run it”) |
+| **Arbeitsweise** | Linear/sequentiell oder iterativ | Kontinuierlicher Kreislauf |
+| **Feedback** | Spät | Früh und dauerhaft |
+
+### Prozesse & Phasen
+
+#### SDLC:
+**Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung**
+
+#### DevOps-Kreislauf:
+**Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan**
+
+
+### Ziele
+
+| SDLC | DevOps |
+|------|--------|
+| Stabilität & Qualität | Geschwindigkeit & Zuverlässigkeit |
+| Strukturierter Ablauf | Automatisierung & Feedback |
+| Minimierung von Risiken | Verkürzte Release-Zyklen |
+
+
+### Auswirkungen auf Entwicklung, Bereitstellung und Betrieb
+
+#### 1. Entwicklung
+
+**SDLC:**  
+Planungsgetrieben, Releases eher selten.
+
+**DevOps:**  
+Kleine, schnelle Iterations (Continuous Integration).
+
+#### 2. Bereitstellung
+
+**SDLC:**  
+Deployment oft erst am Ende.
+
+**DevOps:**  
+Automatisiert über CI/CD-Pipelines; teilweise mehrere Deployments täglich.
+
+#### 3. Betrieb
+
+**SDLC:**  
+Betrieb separat, Feedback kommt spät.
+
+**DevOps:**  
+Monitoring und Logs fließen direkt in Verbesserungen ein.
+
+### Quellen
+
+- https://www.geeksforgeeks.org/software-development-life-cycle-sdlc
+- https://medium.com/@nalawade1000work/sdlc-vs-devops-25ff2dd0accf
+- https://octopus.com/blog/devops-versus-sdlc
+- https://www.youtube.com/watch?v=scEDHsr3APg
+- https://www.youtube.com/watch?v=Fi3_BjVzpqk&pp=ygUOc2RsYyB2cyBkZXZvcHM%3D
+
+---
 
 ### 4. Was ist ein MVP (Minimum Viable Product), und welche Bedeutung hat es im DevOps Lifecycle?
 - Wie wird ein MVP definiert, und welche Kernmerkmale zeichnen es aus?  
