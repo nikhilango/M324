@@ -126,7 +126,7 @@ Der DevOps Lifecycle zielt darauf ab, die **Geschwindigkeit, Qualität, Effizien
 Betrieb separat, Feedback kommt spät.
 
 **DevOps:**  
-Monitoring und Logs fließen direkt in Verbesserungen ein.
+Monitoring und Logs fliessen direkt in Verbesserungen ein.
 
 
 ## Quellen
