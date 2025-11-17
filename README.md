@@ -15,5 +15,5 @@
 - [Lernjournal Nikhil](https://docs.google.com/spreadsheets/d/1NvUebrLdj_eNM6EhkEeyDndma9IEq2nbe9ucljxrkz8/edit?usp=sharing)
 - [Lernjournal Nikola]()
 - [Lernjournal Filip](https://docs.google.com/document/d/1_wahjBzGE7No9TKe5waPjB7uDDXeQFmrE_JVdLso5b8/edit?tab=t.0)
-- [Lernjournal Ömer]()
+- [Lernjournal Ömer](https://docs.google.com/document/d/1JaqqhHU7N9tZ5ClAl48rcPG9SXR_OPW7OG359RT1Zz0/edit?tab=t.0)
 
