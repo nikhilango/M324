@@ -3,6 +3,7 @@
 ## Theorie
 - [T1: Calms](Theorie/T1/CALMS.md)
 - [T2: The Three Ways](Theorie/T2/TheThreeWays.md)
+- [T3: DevOps Prozesse](Theorie/T3/DevOps%20Prozesse.md)
 
 ## Themenblöcke
 - []()
