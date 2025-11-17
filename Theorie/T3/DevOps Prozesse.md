@@ -74,11 +74,69 @@ Der DevOps Lifecycle zielt darauf ab, die **Geschwindigkeit, Qualität, Effizien
 * Atlassian: (DevOpsLifeCycle)[https://www.atlassian.com/de/devops]
 * digicomp: (Unterschied_DevOps&Klassisch)[https://digicomp.ch/blog/2023/12/17/devops-vs-klassische-entwicklung-versiegt-der-wasserfall]
 * ChatGPT
+
 ---
 
-### 3. Welche Unterschiede gibt es zwischen dem SDLC und dem DevOps Lifecycle?
-- Wie unterscheiden sich die Ansätze, Prozesse und Ziele dieser beiden Modelle?  
-- Welche Auswirkungen haben diese Unterschiede auf die Entwicklung, Bereitstellung und den Betrieb von Software?  
+## 3. Unterschiede zwischen SDLC und DevOps Lifecycle
+
+### Vergleich: SDLC vs. DevOps Lifecycle
+### Ansatz & Denkweise
+
+| Aspekt | SDLC | DevOps Lifecycle |
+|--------|------|------------------|
+| **Ziel** | Fertiges Produkt nach definiertem Prozess | Schnelle, stabile und kontinuierliche Releases |
+| **Fokus** | Entwicklung | Entwicklung + Betrieb |
+| **Teamstruktur** | Trennung zwischen Entwicklung & Betrieb | Gemeinsame Verantwortung (“You build it, you run it”) |
+| **Arbeitsweise** | Linear/sequentiell oder iterativ | Kontinuierlicher Kreislauf |
+| **Feedback** | Spät | Früh und dauerhaft |
+
+## Prozesse & Phasen
+
+**SDLC:** Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung
+
+**DevOps-Kreislauf:** Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan
+
+
+## Ziele
+
+| SDLC | DevOps |
+|------|--------|
+| Stabilität & Qualität | Geschwindigkeit & Zuverlässigkeit |
+| Strukturierter Ablauf | Automatisierung & Feedback |
+| Minimierung von Risiken | Verkürzte Release-Zyklen |
+
+
+## Auswirkungen auf Entwicklung, Bereitstellung und Betrieb
+
+### 1. Entwicklung
+
+**SDLC:**  Planungsgetrieben, Releases eher selten.
+
+**DevOps:**  Kleine, schnelle Iterations (Continuous Integration).
+
+### 2. Bereitstellung
+
+**SDLC:**  Deployment oft erst am Ende.
+
+**DevOps:**  Automatisiert über CI/CD-Pipelines; teilweise mehrere Deployments täglich.
+
+### 3. Betrieb
+
+**SDLC:**  
+Betrieb separat, Feedback kommt spät.
+
+**DevOps:**  
+Monitoring und Logs fließen direkt in Verbesserungen ein.
+
+
+## Quellen
+
+- https://www.geeksforgeeks.org/software-development-life-cycle-sdlc
+- https://medium.com/@nalawade1000work/sdlc-vs-devops-25ff2dd0accf
+- https://octopus.com/blog/devops-versus-sdlc
+- https://www.youtube.com/watch?v=scEDHsr3APg
+- https://www.youtube.com/watch?v=Fi3_BjVzpqk&pp=ygUOc2RsYyB2cyBkZXZvcHM%3D
+- chat.openai.com
 
 ### 4. Was ist ein MVP (Minimum Viable Product), und welche Bedeutung hat es im DevOps Lifecycle?
 Ein Minimum Viable Product (MVP) ist ein strategisches Werkzeug der sogenannten ¨Lean-Startup-Methode". Seine formale Definition beschreibt es als die Version eines Produkts, die es einem Team erlaubt, mit dem geringsten Aufwand die maximale Menge an "validiertem Lernen" über Kunden zu sammeln. Statt dass man ein vollständiges Produkt  baut, zielt es darauf ab, nur die zentralen Funktionalitäten so minimal wie möglich zu gestalten, damit man es schon Früh genug von Early Adopters testen kann. Der Fokus liegt auf der schnellen Validierung von Ideen und dem Sammeln von Feedback, nicht auf sofortigem Umsatz.
