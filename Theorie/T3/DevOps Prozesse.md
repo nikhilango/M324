@@ -30,6 +30,8 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 [Atlassian Jira Guide](https://www.atlassian.com/software/jira/guides)
 [IEEE Software Lifecycle Standards Übersicht](https://standards.ieee.org/ieee/12207/5355/)
 
+---
+
 ### 2. Was ist der DevOps Lifecycle, und wie ist er strukturiert?
 - Wie ist der DevOps Lifecycle definiert, und welche Kernphasen beinhaltet er?  
 - Welche Ziele verfolgt der DevOps Lifecycle im Vergleich zu traditionellen Entwicklungsansätzen?
