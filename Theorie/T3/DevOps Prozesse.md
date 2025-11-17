@@ -56,6 +56,7 @@ Die **Kernphasen**:
 * **8. Continuous Feedback:** Durch kontinuierliches Feedback können Teams ihre Prozesse optimieren und Kundenrückmeldungen einbeziehen, um den nächsten Release zu verbessern.
 
 ![DevOps_LifeCycle](https://github.com/nikhilango/M324/blob/main/Images/T3_DevOpsLifeCycle.png)
+Quelle: (DevOpsLifeCycle)[https://www.atlassian.com/de/devops]
 
 #### Ziele im Vergleich zu traditionellen Entwicklungsansätzen
 
