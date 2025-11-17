@@ -54,11 +54,9 @@ Der SDLC besteht aus mehreren Phasen, die je nach Modell (z. B. Wasserfall, Agil
 
 ## Prozesse & Phasen
 
-### SDLC:
-Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung
+**SDLC:** Planung → Analyse → Design → Implementierung → Test → Deployment → Wartung
 
-### DevOps-Kreislauf:
-Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan
+**DevOps-Kreislauf:** Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → zurück zu Plan
 
 
 ## Ziele
@@ -74,19 +72,15 @@ Plan → Code → Build → Test → Release → Deploy → Operate → Monitor 
 
 ### 1. Entwicklung
 
-**SDLC:**  
-Planungsgetrieben, Releases eher selten.
+**SDLC:**  Planungsgetrieben, Releases eher selten.
 
-**DevOps:**  
-Kleine, schnelle Iterations (Continuous Integration).
+**DevOps:**  Kleine, schnelle Iterations (Continuous Integration).
 
 ### 2. Bereitstellung
 
-**SDLC:**  
-Deployment oft erst am Ende.
+**SDLC:**  Deployment oft erst am Ende.
 
-**DevOps:**  
-Automatisiert über CI/CD-Pipelines; teilweise mehrere Deployments täglich.
+**DevOps:**  Automatisiert über CI/CD-Pipelines; teilweise mehrere Deployments täglich.
 
 ### 3. Betrieb
 
