@@ -12,6 +12,8 @@ Dank CI kann man Integrationsfehler schnell erkennen und beheben.
 Automatisierte Tests und Builds, Code-Analysen, Deployment-Pipelines oder Jenkins erlauben eine erfolgreiche Implementierung von CI.
 CI kann die Transparenz im Team erhöhen und die merge conflicts reduzieren. Die Qualitätssicherung ist automatisiert.
 
+Quelle: https://martinfowler.com/articles/continuousIntegration.html
+
 ### 2. Was sind die Vor- und Nachteile von CI?
 - Welche Vorteile bringt die Einführung von CI für die Softwareentwicklung?  
 - Welche Herausforderungen können bei der Implementierung und im Betrieb von CI auftreten?  
@@ -28,7 +30,9 @@ Nachteile:
 - Die Kosten sind erhöht
 - Testdisziplin (man muss häufig commiten)
 
-Langfristige Nutzung von CI kann Produktqualität erhöhen, den Workflow effizienter machen, und stabilere Releases bringen
+Langfristige Nutzung von CI kann Produktqualität erhöhen, den Workflow effizienter machen, und stabilere Releases bringen.
+
+Quelle: https://www.atlassian.com/continuous-delivery/continuous-integration
 
 ### 3. Was ist Continuous Testing, und wie wird es umgesetzt?
 - Wie unterscheidet sich Continuous Testing von traditionellen Testmethoden?  
@@ -41,6 +45,7 @@ CT verhindert, dass irgendwelche Fehler in späteren Phasen vorkommen. Sie werde
 Es werden Unit-Tests, UI-Tests, Security-Tests oder Performance-Tests durchgeführt. Dank zusätzlichen Testberichten und Monitoring kann man die Effektivität 
 sichern.  
 
+Quelle: https://www.ibm.com/topics/continuous-testing
 
 ### 4. Was ist eine Branching-Strategie, und welches sind die bekanntesten Ansätze?
 - Nehmen Sie spziell den **trunk based Ansatz** in den Vergleich auf.
@@ -56,7 +61,9 @@ Bekannte Strategien und ihre Unterschiede:
 - Trunk-Based Development: Sehr kurze Branches, tägliches Mergen in den Main Branch, fördert Geschwindigkeit und CI/CD
 - GitFlow: Getrennte Feature-, Release-, Hotfix-Branches; gut für grosse Releases, aber langsamer
 - GitHub Flow: Feature-Branches + PRs, direkte Integration in Main; einfacher als GitFlow
-- Feature Branching: Längere Branches pro Feature, höhere Isolation, aber mehr Merge-Konflikt-Risiken 
+- Feature Branching: Längere Branches pro Feature, höhere Isolation, aber mehr Merge-Konflikt-Risiken
+
+Quelle: https://trunkbaseddevelopment.com
 
 ### 5. Wie kann man Commits und Branches mit User Stories verknüpfen?
 - Warum ist es sinnvoll, Codeänderungen mit User Stories zu verknüpfen?  
