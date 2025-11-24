@@ -33,13 +33,30 @@ Langfristige Nutzung von CI kann Produktqualität erhöhen, den Workflow effizie
 ### 3. Was ist Continuous Testing, und wie wird es umgesetzt?
 - Wie unterscheidet sich Continuous Testing von traditionellen Testmethoden?  
 - Welche Rolle spielt Continuous Testing im Entwicklungszyklus?  
-- Welche Arten von Tests werden dabei typischerweise automatisiert, und wie wird ihre Effektivität sichergestellt?  
+- Welche Arten von Tests werden dabei typischerweise automatisiert, und wie wird ihre Effektivität sichergestellt?
+
+Tests werden kontinuierlich und automatisiert ind der CI/CD Pipeline ausgeführt, um sofortiges Feedback zu bekommen.
+Bei den traditionellen Testmethoden testet man beispielsweise erst am Schluss, während dessen man beim CT jede Codeänderung testet.
+CT verhindert, dass irgendwelche Fehler in späteren Phasen vorkommen. Sie werden direkt gefunden und behoben, damit die Qualität immer maximiert ist.
+Es werden Unit-Tests, UI-Tests, Security-Tests oder Performance-Tests durchgeführt. Dank zusätzlichen Testberichten und Monitoring kann man die Effektivität 
+sichern.  
+
 
 ### 4. Was ist eine Branching-Strategie, und welches sind die bekanntesten Ansätze?
 - Nehmen Sie spziell den **trunk based Ansatz** in den Vergleich auf.
 - Warum sind Branching-Strategien für die Versionskontrolle wichtig?  
 - Wie beeinflussen unterschiedliche Strategien die Code-Organisation und den Arbeitsfluss in Teams?  
-- Welche Branching-Strategien werden häufig verwendet, und worin unterscheiden sie sich?  
+- Welche Branching-Strategien werden häufig verwendet, und worin unterscheiden sie sich?
+
+Bei der Branching-Strategie organisieren Teams Branches in Versionskontrollsystemen, um parallel entwickeln zu können.
+Trunk based ist am schnellsten, CI-freundlich, minimiert merge conflicts und GitFlow ist strukturiertet. Dagegen ist dieser Ansatz aber träger.
+Die Branching-Strategie definiert, wie man Code versioniert, testet und zusammenführt. Somit kann Chaos verhindert werden.
+Strategien bestimmen, wie schnell integriert wird, wie viele parallele Arbeiten möglich sind und wie riskant Merge-Prozesse sind. 
+Bekannte Strategien und ihre Unterschiede:
+- Trunk-Based Development: Sehr kurze Branches, tägliches Mergen in den Main Branch, fördert Geschwindigkeit und CI/CD
+- GitFlow: Getrennte Feature-, Release-, Hotfix-Branches; gut für grosse Releases, aber langsamer
+- GitHub Flow: Feature-Branches + PRs, direkte Integration in Main; einfacher als GitFlow
+- Feature Branching: Längere Branches pro Feature, höhere Isolation, aber mehr Merge-Konflikt-Risiken 
 
 ### 5. Wie kann man Commits und Branches mit User Stories verknüpfen?
 - Warum ist es sinnvoll, Codeänderungen mit User Stories zu verknüpfen?  
