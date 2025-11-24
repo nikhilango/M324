@@ -5,12 +5,30 @@
 ### 1. Was ist Continuous Integration (CI) und wie wird es umgesetzt?
 - Welche Bedeutung hat Continuous Integration im Softwareentwicklungsprozess?  
 - Welche technischen Prozesse und Werkzeuge ermöglichen eine erfolgreiche Implementierung von CI?  
-- Welche Rolle spielt CI in der Automatisierung und Zusammenarbeit in Teams?  
+- Welche Rolle spielt CI in der Automatisierung und Zusammenarbeit in Teams?
+
+Bei CI integriert man Code-Änderungen häufig in ein gemeinsames Repository. Jede Integration wird durch einen automatisierten Build oder Test verifiziert.
+Dank CI kann man Integrationsfehler schnell erkennen und beheben.
+Automatisierte Tests und Builds, Code-Analysen, Deployment-Pipelines oder Jenkins erlauben eine erfolgreiche Implementierung von CI.
+CI kann die Transparenz im Team erhöhen und die merge conflicts reduzieren. Die Qualitätssicherung ist automatisiert.
 
 ### 2. Was sind die Vor- und Nachteile von CI?
 - Welche Vorteile bringt die Einführung von CI für die Softwareentwicklung?  
 - Welche Herausforderungen können bei der Implementierung und im Betrieb von CI auftreten?  
-- Wie beeinflusst CI langfristig die Produktqualität und den Workflow in einem Team?  
+- Wie beeinflusst CI langfristig die Produktqualität und den Workflow in einem Team?
+
+Vorteile:
+- Früherkennung der Fehler
+- Schnelle Entwicklungszyklen
+- Bessere Qualität des Codes
+- Erhöhte Automatisierung
+
+Nachteile:
+- initial ist der Einrichtungsaufwand grösser
+- Die Kosten sind erhöht
+- Testdisziplin (man muss häufig commiten)
+
+Langfristige Nutzung von CI kann Produktqualität erhöhen, den Workflow effizienter machen, und stabilere Releases bringen
 
 ### 3. Was ist Continuous Testing, und wie wird es umgesetzt?
 - Wie unterscheidet sich Continuous Testing von traditionellen Testmethoden?  
