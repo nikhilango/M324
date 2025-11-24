@@ -12,7 +12,7 @@ Dank CI kann man Integrationsfehler schnell erkennen und beheben.
 Automatisierte Tests und Builds, Code-Analysen, Deployment-Pipelines oder Jenkins erlauben eine erfolgreiche Implementierung von CI.
 CI kann die Transparenz im Team erhöhen und die merge conflicts reduzieren. Die Qualitätssicherung ist automatisiert.
 
-Quelle: https://martinfowler.com/articles/continuousIntegration.html
+Quelle: https://www.atlassian.com/continuous-delivery/continuous-integration
 
 ### 2. Was sind die Vor- und Nachteile von CI?
 - Welche Vorteile bringt die Einführung von CI für die Softwareentwicklung?  
