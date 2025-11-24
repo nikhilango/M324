@@ -81,7 +81,7 @@ Quelle: https://trunkbaseddevelopment.com
     Jira zeigt im Development-Panel Commits, Branches und PRs, wenn Repos verbunden sind; Smart Commits erlauben auch Übergangskommandos aus Commit-Nachrichten.
     Integratoren (Unito, ZigiOps, Azure DevOps/GitHub Apps) bieten bidirektionale Synchronisation zwischen Issue-Trackern und Repos.
 
-**Quellen:**  
+Quelle:
 [GitHub: Linking pull requests to issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue)  
 
 ### 6. Welche Merge-Strategien gibt es, und wann werden sie verwendet?
@@ -103,7 +103,7 @@ Quelle: https://trunkbaseddevelopment.com
     Private/topic branches vor Push → Rebase lokal möglich; öffentliche Branches meiden Rebase, weil IDs geändert werden.
     Viele Teams kombinieren Regeln: z. B. feature/* → Squash, release/* → Merge Commit.
 
-**Quellen:**  
+Quellen:
 [GitLab Docs: Merge Methods](https://docs.gitlab.com/ee/user/project/merge_requests/methods/)  
 [StackOverflow: Differences between merge strategies](https://stackoverflow.com/questions/457927/git-fast-forward-merge)
 
@@ -120,7 +120,7 @@ Quelle: https://trunkbaseddevelopment.com
 - Warum ist Semantic Versioning wichtig für die Kompatibilität und Kommunikation von Änderungen?  
     SemVer ermöglicht automatisches Dependency-Resolution (Package Manager können Versionen sinnvoll auflösen), klare Upgrade-Erwartungen und bessere Kommunikation zwischen Entwicklern, Betrieb und Kunden. Bei APIs sollte man jedoch die Kosten von Multi-Version-Support bedenken — manchmal ist Full-SemVer für öffentliche APIs eine Herausforderung.
 
-**Quellen:**  
+Quelle:
 [GitHub Docs: Versioning Software](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)  
 
 ### 8. Welchen Unterschied haben Mono- und Multirepo-Ansätze im Kontext von Microservices?
@@ -142,7 +142,7 @@ Quelle: https://trunkbaseddevelopment.com
     Abhängigkeiten: Monorepo ermöglicht gleichzeitige Änderungen an abhängigen Komponenten; Multirepo erfordert Versioned Releases und synchronisierte Upgrades.
     Viele Organisationen wählen Hybrid-Ansätze (z. B. mehrere Monorepos nach Domänen) je nach Teamgröße und Tooling.
 
-**Quellen:**  
+Quelle:
 [Atlassian: Microservices and Repository Strategies](https://www.atlassian.com/microservices)  
 
 ### 9. Was ist ein Artifact-Repository, und welche Aufgaben erfüllt es?
