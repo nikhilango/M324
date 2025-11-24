@@ -150,7 +150,14 @@ Quelle: https://trunkbaseddevelopment.com
 - Welche Arten von Artefakten werden typischerweise in einem Repository verwaltet?  
 - Warum ist ein Artifact-Repository wichtig für CI/CD-Pipelines?
 
+Ein Artifact-Repository ist ein zentrales System zum Speichern, Versionieren und Bereitstellen von Build-Artefakten wie Libraries, Paketen oder Docker-
+Images. Es dient als zuverlässige Quelle („Single Source of Truth“) für alle erzeugten Artefakte.
+Es ermöglicht reproduzierbare Builds, kontrollierte Verteilung von Artefakten und strukturierte Übergabe zwischen Entwicklung, Testing und Deployment.
+Typischerweise Binärdateien (JARs, DLLs), Container-Images, Pakete (npm, PyPI), Konfigurationsarchive, Helm-Charts oder gesamte Release-Bundles.
+Es speichert automatisch alle Build-Ergebnisse, ermöglicht deren Wiederverwendung in Deployments, unterstützt Rollbacks und stellt sicher, dass Pipeline-
+Schritte mit geprüften und unveränderten Artefakten arbeiten.
 
+Quelle: https://jfrog.com/knowledge-base/what-is-an-artifact-repository/
 
 ## Bewertung
 
