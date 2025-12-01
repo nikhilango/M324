@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.ticketverwaltung.controller.TicketControllerTest" time="1.691" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.ticketverwaltung.service.TicketServiceIntegrationTest" time="1.974" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -47,8 +47,12 @@
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="java.vendor.version" value="Temurin-25.0.1+8"/>
     <property name="localRepository" value="/Users/omer/.m2/repository"/>
+    <property name="javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom" value="com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl"/>
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="jetty.git.hash" value="5a9a771a9fbcb9d36993630850f612581b78c13f"/>
     <property name="java.io.tmpdir" value="/var/folders/8l/tmjkcpdd1q35c2v979fvq0cw0000gn/T/"/>
+    <property name="wiremock.org.eclipse.jetty.http.HttpGenerator.STRICT" value="true"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
     <property name="java.version" value="25.0.1"/>
     <property name="user.dir" value="/Users/omer/github/M324/Code/ticketverwaltung"/>
     <property name="os.arch" value="aarch64"/>
@@ -63,13 +67,14 @@
     <property name="java.vm.version" value="25.0.1+8-LTS"/>
     <property name="stdin.encoding" value="UTF-8"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="javax.xml.transform.TransformerFactory" value="com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="createTicket_HappyPath" classname="com.ticketverwaltung.controller.TicketControllerTest" time="0.128">
-    <system-out><![CDATA[10:23:55.828 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ticketverwaltung.controller.TicketControllerTest]: TicketControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-10:23:55.931 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ticketverwaltung.TicketverwaltungApplication for test class com.ticketverwaltung.controller.TicketControllerTest
-10:23:55.977 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+  <testcase name="createTicket_Integration_ExternalServiceError" classname="com.ticketverwaltung.service.TicketServiceIntegrationTest" time="0.182">
+    <system-out><![CDATA[2025-12-01T10:23:57.458+01:00  INFO 27057 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ticketverwaltung.service.TicketServiceIntegrationTest]: TicketServiceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-01T10:23:57.466+01:00  INFO 27057 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ticketverwaltung.TicketverwaltungApplication for test class com.ticketverwaltung.service.TicketServiceIntegrationTest
+2025-12-01T10:23:57.858+01:00  INFO 27057 --- [           main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -80,20 +85,38 @@
 
  :: Spring Boot ::                (v3.4.0)
 
-2025-12-01T10:23:56.134+01:00  INFO 27057 --- [           main] c.t.controller.TicketControllerTest      : Starting TicketControllerTest using Java 25.0.1 with PID 27057 (started by omer in /Users/omer/github/M324/Code/ticketverwaltung)
-2025-12-01T10:23:56.135+01:00  INFO 27057 --- [           main] c.t.controller.TicketControllerTest      : No active profile set, falling back to 1 default profile: "default"
-2025-12-01T10:23:57.279+01:00  INFO 27057 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2025-12-01T10:23:57.279+01:00  INFO 27057 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2025-12-01T10:23:57.280+01:00  INFO 27057 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2025-12-01T10:23:57.295+01:00  INFO 27057 --- [           main] c.t.controller.TicketControllerTest      : Started TicketControllerTest in 1.323 seconds (process running for 1.858)
+2025-12-01T10:23:57.870+01:00  INFO 27057 --- [           main] c.t.s.TicketServiceIntegrationTest       : Starting TicketServiceIntegrationTest using Java 25.0.1 with PID 27057 (started by omer in /Users/omer/github/M324/Code/ticketverwaltung)
+2025-12-01T10:23:57.870+01:00  INFO 27057 --- [           main] c.t.s.TicketServiceIntegrationTest       : No active profile set, falling back to 1 default profile: "default"
+2025-12-01T10:23:57.993+01:00  INFO 27057 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-01T10:23:58.013+01:00  INFO 27057 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 1 JPA repository interface.
+2025-12-01T10:23:58.140+01:00  INFO 27057 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-01T10:23:58.172+01:00  INFO 27057 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-12-01T10:23:58.188+01:00  INFO 27057 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-01T10:23:58.315+01:00  INFO 27057 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-01T10:23:58.330+01:00  INFO 27057 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-01T10:23:58.448+01:00  INFO 27057 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:ticketdb user=SA
+2025-12-01T10:23:58.449+01:00  INFO 27057 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-01T10:23:58.480+01:00  INFO 27057 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-01T10:23:58.845+01:00  INFO 27057 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists ticket cascade 
+Hibernate: create table ticket (done_date timestamp(6) with time zone, review_date timestamp(6) with time zone, description varchar(255), employee_id varchar(255), id varchar(255) not null, title varchar(255), status enum ('DONE','IN_PROGRESS','OPEN','REVIEW'), primary key (id))
+2025-12-01T10:23:58.860+01:00  INFO 27057 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-01T10:23:59.115+01:00  WARN 27057 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-01T10:23:59.197+01:00  INFO 27057 --- [           main] c.t.s.TicketServiceIntegrationTest       : Started TicketServiceIntegrationTest in 1.339 seconds (process running for 3.76)
+Hibernate: select t1_0.id,t1_0.description,t1_0.done_date,t1_0.employee_id,t1_0.review_date,t1_0.status,t1_0.title from ticket t1_0
 ]]></system-out>
-    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
-WARNING: A Java agent has been loaded dynamically (/Users/omer/.m2/repository/net/bytebuddy/byte-buddy-agent/1.15.10/byte-buddy-agent-1.15.10.jar)
-WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
-WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
-WARNING: Dynamic loading of agents will be disallowed by default in a future release
-]]></system-err>
   </testcase>
-  <testcase name="createTicket_SadPath_ServiceError" classname="com.ticketverwaltung.controller.TicketControllerTest" time="0.007"/>
-  <testcase name="createTicket_SadPath_InvalidInput" classname="com.ticketverwaltung.controller.TicketControllerTest" time="0.006"/>
+  <testcase name="createTicket_Integration_Success" classname="com.ticketverwaltung.service.TicketServiceIntegrationTest" time="0.036">
+    <system-out><![CDATA[Hibernate: select t1_0.id,t1_0.description,t1_0.done_date,t1_0.employee_id,t1_0.review_date,t1_0.status,t1_0.title from ticket t1_0
+Hibernate: select t1_0.id,t1_0.description,t1_0.done_date,t1_0.employee_id,t1_0.review_date,t1_0.status,t1_0.title from ticket t1_0 where t1_0.id=?
+Hibernate: insert into ticket (description,done_date,employee_id,review_date,status,title,id) values (?,?,?,?,?,?,?)
+]]></system-out>
+  </testcase>
 </testsuite>
