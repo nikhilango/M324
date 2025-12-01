@@ -141,8 +141,10 @@ Grades der Kontrolle versus des Komforts unterscheiden.
 
 Am unteren Ende steht das Bare Metal / VM Deployment. Hier wird Code direkt auf einem Betriebssystem installiert. Dies bietet maximale Kontrolle über die 
 Hardware, erfordert aber hohen Wartungsaufwand (Patches, Konfiguration). 
+
 Der nächste Evolutionsschritt ist das Container Deployment (z.B. via Docker & Kubernetes). Hier wird die Anwendung inklusive aller Abhängigkeiten in ein 
 isoliertes Paket verpackt. Dies löst das Problem "Works on my machine", da der Container überall gleich läuft. 
+
 Am oberen Ende der Abstraktion stehen Serverless und PaaS (Platform as a Service). Hierbei kümmert sich der Entwickler gar 
 nicht mehr um Server oder Container, sondern lädt nur noch den Code oder einzelne Funktionen hoch. Die Cloud-Plattform übernimmt Skalierung und Betrieb 
 automatisch.
