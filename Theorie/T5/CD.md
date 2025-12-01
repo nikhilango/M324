@@ -72,6 +72,8 @@ Anstatt darauf zu warten, dass ein Feature komplett fertiggestellt ist, bevor de
 integriert, aber durch logische Schalter vor dem Endnutzer verborgen. Im Code wird eine bedingte Anweisung (z. b. ein if/else-Block) um das neue Feature 
 gewickelt. Diese Bedingung prüft, ob das Feature für den aktuellen Nutzer aktiv sein soll.
 
+![Feature Toggle](https://github.com/nikhilango/M324/blob/main/Images/FeatureToggles.png)
+
 Dies ermöglicht Teams, unfertige Funktionen sicher in die Produktionsumgebung zu bringen (Dark Launching), ohne den Betrieb zu stören. Zudem erlauben 
 Toggles das gezielte Freischalten von Funktionen für bestimmte Nutzergruppen (Canary Releases) oder das schnelle Abschalten fehlerhafter Funktionen ohne 
 erneutes Deployment (Kill Switch).
@@ -93,6 +95,8 @@ anderen Server oder Container-Set läuft, besteht der Rollback lediglich darin, 
 Ausfallzeit wird auf Sekunden reduziert. Eine besondere Herausforderung stellen Datenbanken dar: Da Datenänderungen schwer rückgängig zu machen sind, gilt 
 hier oft die Strategie "Roll Forward" (schnelles Fixen des Fehlers) statt "Roll Back", oder es muss strikt auf Abwärtskompatibilität geachtet werden.
 
+![Rollback](https://github.com/nikhilango/M324/blob/main/Images/Rollback.png)
+
 Quellen
 
 Octopus Deploy: https://octopus.com/blog/rollback-strategies
@@ -111,6 +115,8 @@ Logs: Detaillierte Protokolle von Ereignissen, die bei der Fehlersuche helfen.
 
 Tracing: Die Verfolgung einer einzelnen Anfrage über verschiedene Microservices hinweg, um Bottlenecks zu identifizieren. Tools wie Prometheus oder Grafana 
 sammeln diese Daten zentral und alarmieren die Entwickler automatisch bei Anomalien.
+
+![CM](https://github.com/nikhilango/M324/blob/main/Images/ContinuousMonitoring.png)
 
 Quellen
 
@@ -148,6 +154,8 @@ isoliertes Paket verpackt. Dies löst das Problem "Works on my machine", da der 
 Am oberen Ende der Abstraktion stehen Serverless und PaaS (Platform as a Service). Hierbei kümmert sich der Entwickler gar 
 nicht mehr um Server oder Container, sondern lädt nur noch den Code oder einzelne Funktionen hoch. Die Cloud-Plattform übernimmt Skalierung und Betrieb 
 automatisch.
+
+![Deplyoment](https://github.com/nikhilango/M324/blob/main/Images/Deployment.png)
 
 Quellen
 
