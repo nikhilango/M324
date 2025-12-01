@@ -79,6 +79,7 @@ erneutes Deployment (Kill Switch).
 Quellen:
 
 Martin Fowler: https://martinfowler.com/articles/feature-toggles.html 
+
 Atlassian: https://www.atlassian.com/solutions/devops/integrations/feature-flags  
 
 ## 7. Was sind Rollback Strategien?
@@ -94,7 +95,6 @@ hier oft die Strategie "Roll Forward" (schnelles Fixen des Fehlers) statt "Roll 
 
 Quellen
 
-Google Cloud Architecture Center: https://cloud.google.com/architecture/devops/devops-tech-deployment-automation#roll_back_mechanisms 
 Octopus Deploy: https://octopus.com/blog/rollback-strategies
 
 ## 8. Was ist Continuous Monitoring und wie wird es umgesetzt?
@@ -114,9 +114,9 @@ sammeln diese Daten zentral und alarmieren die Entwickler automatisch bei Anomal
 
 Quellen
 
-Dynatrace: https://www.dynatrace.com/de/news/blog/was-ist-continuous-monitoring/
-
 Splunk: https://www.splunk.com/en_us/blog/learn/continuous-monitoring.html
+
+ChatGPT
 
 ## 9. Wie werden Passwörter sicher gespeichert?
 In der Softwareentwicklung gilt der Grundsatz: Keine Geheimnisse im Quellcode. Passwörter, API-Schlüssel oder Zertifikate dürfen niemals im Klartext in 
@@ -132,7 +132,7 @@ Quellen
 
 OWASP: https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html
 
-HashiCorp: https://www.hashicorp.com/products/vault/secrets-management
+AWS: https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts
 
 ## 10. Welche Arten von Deployment gibt es? Geben Sie alle Ihre Ideen an. Sie müssen dann nicht alle umsetzen, aber finden Sie heraus was alles möglich ist (z.B. Container via Docker, Container via Docker swarm, Direkt auf Server code kompilieren, etc). geben Sie dabei jeweils auch an, welche Software/Umgebung dazu notwendig ist.)
 
@@ -153,4 +153,4 @@ Red Hat: https://www.redhat.com/en/topics/cloud-native-apps/what-is-serverless
 
 Docker: https://www.docker.com/resources/what-container/
 
-AWS: https://aws.amazon.com/types-of-cloud-computing/dazu notwendig ist.
+AWS: https://aws.amazon.com/types-of-cloud-computing/
