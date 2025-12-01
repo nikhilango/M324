@@ -12,6 +12,8 @@ CD ist die Praxis, bei der jede Code-Änderung, die alle automatisierten Tests b
   - Prozess: Build, Test und Deployment in die Produktion sind vollständig automatisiert. Nur ein fehlgeschlagener Test stoppt den Rollout.
 
   - Tools: Jenkins, GitLab CI, AWS CodeDeploy, Feature Flags.
+ 
+![CD Diagram](https://github.com/nikhilango/M324/blob/main/Images/CD_diagram.png)
 
 Quelle: https://www.atlassian.com/de/continuous-delivery/software-testing/continuous-deployment, https://www.cologne-intelligence.de/glossar/continuous-deployment
 ## 2. Was ist der Unterschied zwischen Continuous Deployment und Continuous Delivery?
@@ -57,6 +59,8 @@ A/B Testing ist eine Methode, bei der zwei Varianten (A und B) einer Komponente 
 * **Vorgehensweise:** Benutzerverkehr zufällig aufteilen, Interaktionsdaten sammeln und anhand von Messwerten entscheiden, welche Version gewinnt.
 * **Zweck:** Ermöglicht datengestützte Entscheidungen über Funktionen oder Design anstelle von Meinungen.
 * **Verbindung zu CD:** Feature Flags und Deployment-Strategien (Canary) werden genutzt, um A/B-Tests in der Live-Umgebung durchzuführen.
+
+![AB Diagram](https://github.com/nikhilango/M324/blob/main/Images/Ab-test.jpg)
 
 Quelle: https://www.agile-academy.com/de/agiles-lexikon/a-b-testing/, https://de.wikipedia.org/wiki/A/B-Test
 ## 6. Was sind Feature Toggles?
