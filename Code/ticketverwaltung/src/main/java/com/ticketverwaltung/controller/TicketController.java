@@ -26,8 +26,6 @@ public class TicketController {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        // If it's a ResponseStatusException, let Spring handle it or extract message?
-        // For simplicity, we return Bad Request with message.
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Fehlerhafte Eingabe. Bitte prüfen Sie die Daten. Detail: " + ex.getMessage());
     }
