@@ -49,17 +49,6 @@ public class TicketService {
     }
 
     private void validateEmployee(String employeeId) {
-        // The requirement says: "Dieser Endpoint verwendet den ersten Microservice um
-        // die Eingabe des Mitarbeiters zu validieren"
-        // We assume we can fetch all employees and check if the ID is in the list, OR
-        // fetch a specific employee.
-        // The provided EmployeeService has findAllEmployees and findById.
-        // The Controller has getAllEmployees. It does NOT seem to have a
-        // getEmployeeById endpoint explicitly exposed in the provided code snippet?
-        // Let's check EmployeeController again.
-        // It has @GetMapping for getAllEmployees. It does NOT have
-        // @GetMapping("/{id}").
-        // So we must fetch all and check if ID exists.
 
         try {
             EmployeeResponseDTO[] employees = restTemplate.getForObject(employeeServiceUrl,
