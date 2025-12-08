@@ -12,6 +12,9 @@ Dank CI kann man Integrationsfehler schnell erkennen und beheben.
 Automatisierte Tests und Builds, Code-Analysen, Deployment-Pipelines oder Jenkins erlauben eine erfolgreiche Implementierung von CI.
 CI kann die Transparenz im Team erhöhen und die merge conflicts reduzieren. Die Qualitätssicherung ist automatisiert.
 
+![image](https://devonblog.com/wp-content/uploads/2019/07/c-i-100.jpg)
+*(Quelle: devonblog.com)*
+
 Quelle: https://www.atlassian.com/continuous-delivery/continuous-integration
 
 ### 2. Was sind die Vor- und Nachteile von CI?
@@ -45,6 +48,9 @@ CT verhindert, dass irgendwelche Fehler in späteren Phasen vorkommen. Sie werde
 Es werden Unit-Tests, UI-Tests, Security-Tests oder Performance-Tests durchgeführt. Dank zusätzlichen Testberichten und Monitoring kann man die Effektivität 
 sichern.  
 
+![image](https://testomat.io/wp-content/uploads/2025/04/Testing_Pyramid_consider_testing_types.png)
+*(Quelle: testomat.io)*
+
 Quelle: https://www.ibm.com/topics/continuous-testing
 
 ### 4. Was ist eine Branching-Strategie, und welches sind die bekanntesten Ansätze?
@@ -63,7 +69,12 @@ Bekannte Strategien und ihre Unterschiede:
 - GitHub Flow: Feature-Branches + PRs, direkte Integration in Main; einfacher als GitFlow
 - Feature Branching: Längere Branches pro Feature, höhere Isolation, aber mehr Merge-Konflikt-Risiken
 
+![image](https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSnZa24ugoD073drXMOb28KbxV9Trfe9ACT3nhVO6o2RMibvaz3Oc3sSsVkRtNBPMTyjrtC5qBPz8SXwhMqoyexpI7BU8WEQP9ThEfp6I7Ki9_w4-KKjQhLlE9DfjnX6HmFz_i0NHO23kw9Q01-vhtV0wEmuiFP5byOQaye3nCXQ6lJ7-xg7R5RTH0rXiXSWoQL3_vQQpW7BqqV_CmrndKaWXnkxqaqy7eyh4TZgM-t6gSA04JP4gjl_0VmbO-f9oCoe832Nt1j7h6uRrd6wTppp4pMDXZL48weyRHRglxiMaRSXuQA6AHz5NxiIyI4MXK-s6hr0BGvf5yl52wL63ZLj5mzyvcxsHEihca81Az3z5EV4vMQVco1sQiT-SlzX2Xp_zuUaS-uZZlRHBWHcRgKV2zkr4J4TS1KlFDR__ZdQgDG1WBAISptfExfWPEUghVzrPLu5sNUP1vBhF7uIOKrgRUqCbiIpZyRCCe-ZmhnBwtXFwmgFoM-ZxxtGmPmVmIzvI6pot55wcwvbxXzHycaJMjo9jLBpc2KWY1Qp4z3f61tQjWKLblJ-QO8XqjbThLFB0a5EhUF2oN_wveyoxxP1_FptzM3_0yGoU3TwaV-wyXi_SuBcqs3dhpChIJdOmCnkNdYu2oFDUpAczyoh6e2B3MjjWv0uoogOyTwqzVI677W28qmN0PeKfNuLacCviHebml5OAgFrVZwLxaUBukzeJOO8njNY5OLY5bJVpJFvEqk3eJ1AHNIqRP9qDfhWmFkoboCkMLPqTS-ay8-MLONlKfPUqyoaWLbdQsLtMJQFb0j_PxmH2ae783sRHciD_OZBnX5yXTOSI7YjQnomDTdre_xIzvehIyXzO2oVsXaL_dE-veX7VTtobDXxyhz_4ekmsxRIuZMWe8TQWP2S3bMCDjmtawz-iKSZJaLT8FuvEFeGNquaDvkG-SMA4ACwgDkMg77hT-Eo5ugPP8iuNMnDCl7lERPRGB3ejtiD_HH3p5187um6MFkvp1RbOrjT43a8EKMaAYh8WWO_oO-TWLI-7KPoHgud20tajWf-G8oAhAUH76BEFoocOAekFxvhoa9jI4fAVrSZX3LyqD_o7WM7sgAMxMrhRePhIqtLSNFBwuKtGkcaahxMzLFxKafLBLY4DR1RSXbjOhessnmpctNswggrynDOcxaA3eCe5WZQPiY6yfXi=s1024-rj)
+
+*(Quelle: generiert mit Gemini)*
+
 Quelle: https://trunkbaseddevelopment.com
+
 
 ### 5. Wie kann man Commits und Branches mit User Stories verknüpfen?
 - Warum ist es sinnvoll, Codeänderungen mit User Stories zu verknüpfen?  
