@@ -5,6 +5,10 @@
 - [T2: The Three Ways](Theorie/T2/TheThreeWays.md)
 - [T3: DevOps Prozesse](Theorie/T3/DevOps%20Prozesse.md)
 
+## KI-Dokumentation
+- [KI-Chatverläufe](Dokumentation/KiVerbrauch.md)
+
+
 ## Themenblöcke
 - []()
 
