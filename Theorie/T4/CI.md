@@ -69,7 +69,7 @@ Bekannte Strategien und ihre Unterschiede:
 - GitHub Flow: Feature-Branches + PRs, direkte Integration in Main; einfacher als GitFlow
 - Feature Branching: Längere Branches pro Feature, höhere Isolation, aber mehr Merge-Konflikt-Risiken
 
-![image](https://shorturl.at/L5jQd)
+![image](unnamed.jpg)
 
 *(Quelle: generiert mit Gemini)*
 
@@ -78,26 +78,30 @@ Quelle: https://trunkbaseddevelopment.com
 
 ### 5. Wie kann man Commits und Branches mit User Stories verknüpfen?
 - Warum ist es sinnvoll, Codeänderungen mit User Stories zu verknüpfen?  
-    Die Verknüpfung macht die Entwicklung transparent: Rückverfolgung von Codeänderungen zu Anforderungen, einfachere Nachvollziehbarkeit bei Reviews und Releases sowie bessere Audit- und Fehlerursachenanalyse. Diese Nachvollziehbarkeit erleichtert auch automatische Release-Notes und Compliance-Anforderungen. 
+
+Die Verknüpfung macht die Entwicklung transparent: Rückverfolgung von Codeänderungen zu Anforderungen, einfachere Nachvollziehbarkeit bei Reviews und Releases sowie bessere Audit- und Fehlerursachenanalyse. Diese Nachvollziehbarkeit erleichtert auch automatische Release-Notes und Compliance-Anforderungen. 
 
 - Welche Praktiken und Namenskonventionen können helfen, diese Verknüpfung effektiv umzusetzen?  
-    Branch-Namen: z. B. feature/JRA-123-add-login oder bugfix/PROJ-45/fix-nullptr - das Projektschlüssel/Issue-ID zuerst, dann kurzer Text.
-    Commit-Messages: immer Issue-Key referenzieren (JRA-123: Implement login flow) oder #123 bei GitHub, ggf. Smart-Commit-Keywords (JRA-123 #comment done) um Work-Item-Aktionen auszulösen.
-    Pull-Request-Titel: Issue-Key + kurze Beschreibung; PR-Templates fordern Referenz auf die User Story.
-    Diese Konventionen werden explizit in Docs/Guides empfohlen (z. B. Jira Smart Commits, GitHub Linking).
+
+Branch-Namen: z. B. feature/JRA-123-add-login oder bugfix/PROJ-45/fix-nullptr - das Projektschlüssel/Issue-ID zuerst, dann kurzer Text.
+Commit-Messages: immer Issue-Key referenzieren (JRA-123: Implement login flow) oder #123 bei GitHub, ggf. Smart-Commit-Keywords (JRA-123 #comment done) um Work-Item-Aktionen auszulösen.
+Pull-Request-Titel: Issue-Key + kurze Beschreibung; PR-Templates fordern Referenz auf die User Story.
+Diese Konventionen werden explizit in Docs/Guides empfohlen (z. B. Jira Smart Commits, GitHub Linking).
 
 - Wie unterstützen Tools die Verbindung zwischen Aufgabenmanagement und Code-Repositories?  
-    Tools verbinden Issues mit Commits und PRs automatisch:
-    GitHub verlinkt Commits/PRs mit Issues per #issue oder Schlüsselwörtern.
-    Jira zeigt im Development-Panel Commits, Branches und PRs, wenn Repos verbunden sind; Smart Commits erlauben auch Übergangskommandos aus Commit-Nachrichten.
-    Integratoren (Unito, ZigiOps, Azure DevOps/GitHub Apps) bieten bidirektionale Synchronisation zwischen Issue-Trackern und Repos.
+
+Tools verbinden Issues mit Commits und PRs automatisch:
+GitHub verlinkt Commits/PRs mit Issues per #issue oder Schlüsselwörtern.
+Jira zeigt im Development-Panel Commits, Branches und PRs, wenn Repos verbunden sind; Smart Commits erlauben auch Übergangskommandos aus Commit-Nachrichten.
+Integratoren (Unito, ZigiOps, Azure DevOps/GitHub Apps) bieten bidirektionale Synchronisation zwischen Issue-Trackern und Repos.
 
 Quelle:
 [GitHub: Linking pull requests to issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue)  
 
 ### 6. Welche Merge-Strategien gibt es, und wann werden sie verwendet?
 - Welche Ansätze gibt es, um Änderungen aus einem Branch in einen anderen zu integrieren?  
-    Merge Commit (git merge --no-ff): erzeugt einen Merge-Commit, der die Branch-Zusammenführung sichtbar macht.
+
+  Merge Commit (git merge --no-ff): erzeugt einen Merge-Commit, der die Branch-Zusammenführung sichtbar macht.
     Fast-Forward Merge (ohne Merge-Commit): wenn die Ziel-Branch keinen neuen Commit hat, wird der Pointer weiterbewegt - keine Merge-Commit-Historie.
     Squash Merge (--squash oder GitHub “Squash and merge”): fasst alle Commits eines Branches zu einem einzigen Commit zusammen.
     Rebase (lokal oder vor dem Merge): integriert Änderungen neu entlang der Ziel-Branch-Historie, um eine lineare Historie zu erzeugen.
@@ -120,35 +124,41 @@ Quellen:
 
 ### 7. Was ist Semantic Versioning, und wie wird es eingesetzt?
 - Wie hilft Semantic Versioning bei der Verwaltung von Software-Versionen?  
-    Semantic Versioning (SemVer) ist eine standardisierte Notation (MAJOR.MINOR.PATCH), die kommuniziert, ob eine neue Version inkompatible API-Änderungen, neue abwärtskompatible Features oder nur Bugfixes enthält. Das vereinfacht Abhängigkeitsmanagement, Release-Strategien und Erwartungen der Nutzer/Integratoren.
+
+  Semantic Versioning (SemVer) ist eine standardisierte Notation (MAJOR.MINOR.PATCH), die kommuniziert, ob eine neue Version inkompatible API-Änderungen, neue abwärtskompatible Features oder nur Bugfixes enthält. Das vereinfacht Abhängigkeitsmanagement, Release-Strategien und Erwartungen der Nutzer/Integratoren.
 
 - Welche Konventionen werden bei Semantic Versioning angewendet?  
-    MAJOR erhöht bei inkompatiblen API-Änderungen.
+
+  MAJOR erhöht bei inkompatiblen API-Änderungen.
     MINOR bei abwärtskompatiblen Funktions-Erweiterungen.
     PATCH bei abwärtskompatiblen Bugfixes.
     Zusätzlich gibt es Prä-Release- und Build-Meta-Anhänge (z. B. 1.2.3-alpha.1). Die offizielle Spezifikation beschreibt Regeln zur Definition der öffentlichen API.
 
 - Warum ist Semantic Versioning wichtig für die Kompatibilität und Kommunikation von Änderungen?  
-    SemVer ermöglicht automatisches Dependency-Resolution (Package Manager können Versionen sinnvoll auflösen), klare Upgrade-Erwartungen und bessere Kommunikation zwischen Entwicklern, Betrieb und Kunden. Bei APIs sollte man jedoch die Kosten von Multi-Version-Support bedenken — manchmal ist Full-SemVer für öffentliche APIs eine Herausforderung.
+
+  SemVer ermöglicht automatisches Dependency-Resolution (Package Manager können Versionen sinnvoll auflösen), klare Upgrade-Erwartungen und bessere Kommunikation zwischen Entwicklern, Betrieb und Kunden. Bei APIs sollte man jedoch die Kosten von Multi-Version-Support bedenken — manchmal ist Full-SemVer für öffentliche APIs eine Herausforderung.
 
 Quelle:
 [GitHub Docs: Versioning Software](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)  
 
 ### 8. Welchen Unterschied haben Mono- und Multirepo-Ansätze im Kontext von Microservices?
 - Wie unterscheiden sich Mono- und Multirepo-Ansätze in der Organisation von Code?  
-    Monorepo: alle Dienste/Bibliotheken in einem einzigen Repository.
+
+  Monorepo: alle Dienste/Bibliotheken in einem einzigen Repository.
     Multirepo: jeder Service (oder Paket) hat ein eigenes Repository.
     Die Struktur beeinflusst CI, Zugriffsrechte, Tooling und Dependency-Management.
 
 - Welche Vor- und Nachteile haben beide Ansätze speziell für die Entwicklung und Wartung von Microservices?  
-    Monorepo – Vorteile: einfachere Refactorings über Services hinweg, konsistente Toolchain, zentrales Sichtbarmachen von Code.
+
+  Monorepo – Vorteile: einfachere Refactorings über Services hinweg, konsistente Toolchain, zentrales Sichtbarmachen von Code.
     Nachteile: CI-Skalierung (lange Builds), grössere Repo-Grösse, mögliche Zugriffs-/Ownership-Komplexität.
 
     Multirepo – Vorteile: klare Ownership, kleine Repos, unabhängige CI/CD für jeden Service.
     Nachteile: Koordination über Repos hinweg schwieriger, cross-repo Änderungen aufwändiger, mehr Verwaltungsaufwand.
 
 - Wie beeinflussen die Ansätze die Skalierbarkeit, Zusammenarbeit und Abhängigkeiten zwischen Teams?  
-    Skalierbarkeit CI/CD: Multirepo skaliert leichter pro Service; Monorepo benötigt ausgefeilte selective CI (z. B. nur betroffene Teile bauen).
+
+  Skalierbarkeit CI/CD: Multirepo skaliert leichter pro Service; Monorepo benötigt ausgefeilte selective CI (z. B. nur betroffene Teile bauen).
     Zusammenarbeit: Monorepo erleichtert teamübergreifende Änderungen; Multirepo zwingt zu stabilen APIs und besseren Versionierungsstrategien.
     Abhängigkeiten: Monorepo ermöglicht gleichzeitige Änderungen an abhängigen Komponenten; Multirepo erfordert Versioned Releases und synchronisierte Upgrades.
     Viele Organisationen wählen Hybrid-Ansätze (z. B. mehrere Monorepos nach Domänen) je nach Teamgröße und Tooling.
