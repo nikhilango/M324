@@ -6,7 +6,7 @@
 - [T3: DevOps Prozesse](Theorie/T3/DevOps%20Prozesse.md)
 
 ## KI-Dokumentation
-- [KI-Chatverläufe](Dokumentation/KiVerbrauch.md)
+- [KI-Chatverläufe](Dokumentation/Readme.md)
 
 
 ## Themenblöcke
