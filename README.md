@@ -20,4 +20,4 @@
 - [Lernjournal Nikola]()
 - [Lernjournal Filip](https://docs.google.com/document/d/1_wahjBzGE7No9TKe5waPjB7uDDXeQFmrE_JVdLso5b8/edit?tab=t.0)
 - [Lernjournal Ömer](https://docs.google.com/document/d/1JaqqhHU7N9tZ5ClAl48rcPG9SXR_OPW7OG359RT1Zz0/edit?tab=t.0)
-
+- [Meeting Definition](https://docs.google.com/document/d/1ZCVNwtubrq3PZxihHEV-Cd2TfQ7l-VcAhqEMfM79iJ4/edit?usp=sharing)
