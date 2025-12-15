@@ -102,21 +102,21 @@ Quelle:
 - Welche Ansätze gibt es, um Änderungen aus einem Branch in einen anderen zu integrieren?  
 
   Merge Commit (git merge --no-ff): erzeugt einen Merge-Commit, der die Branch-Zusammenführung sichtbar macht.
-    \Fast-Forward Merge (ohne Merge-Commit): wenn die Ziel-Branch keinen neuen Commit hat, wird der Pointer weiterbewegt - keine Merge-Commit-Historie.
-    \Squash Merge (--squash oder GitHub “Squash and merge”): fasst alle Commits eines Branches zu einem einzigen Commit zusammen.
-    \Rebase (lokal oder vor dem Merge): integriert Änderungen neu entlang der Ziel-Branch-Historie, um eine lineare Historie zu erzeugen.
+    Fast-Forward Merge (ohne Merge-Commit): wenn die Ziel-Branch keinen neuen Commit hat, wird der Pointer weiterbewegt - keine Merge-Commit-Historie.  
+    Squash Merge (--squash oder GitHub “Squash and merge”): fasst alle Commits eines Branches zu einem einzigen Commit zusammen.  
+    Rebase (lokal oder vor dem Merge): integriert Änderungen neu entlang der Ziel-Branch-Historie, um eine lineare Historie zu erzeugen.  
 
 - Wie beeinflussen unterschiedliche Merge-Strategien die Historie und die Nachvollziehbarkeit von Änderungen?  
-    \Merge Commit erhält komplettes Branch-History-Kontext (gut für Nachvollziehbarkeit großer Feature-Arbeiten).
-    \Fast-Forward ist sauber, aber verliert explizite Zusammenführungsmarkierung.
-    \Squash produziert saubere, kompakte Haupt-Branch-History, dafür gehen einzelne Zwischenschritte verloren (weniger granular nachvollziehbar).
-    \Rebase erzeugt lineare History (leichter zu lesen), verändert aber Commit-IDs.
+    Merge Commit erhält komplettes Branch-History-Kontext (gut für Nachvollziehbarkeit großer Feature-Arbeiten).  
+    Fast-Forward ist sauber, aber verliert explizite Zusammenführungsmarkierung.  
+    Squash produziert saubere, kompakte Haupt-Branch-History, dafür gehen einzelne Zwischenschritte verloren (weniger granular nachvollziehbar).  
+    Rebase erzeugt lineare History (leichter zu lesen), verändert aber Commit-IDs.  
 
 - Unter welchen Umständen wird welche Strategie bevorzugt?  
-    \Preserve history / Traceability needed → Merge Commit / --no-ff. (große Features, Compliance)
-    \Saubere Main-Branch-History bevorzugt → Squash oder Rebase + Fast-Forward (bei kleinen, häufigen PRs).
-    \Private/topic branches vor Push → Rebase lokal möglich; öffentliche Branches meiden Rebase, weil IDs geändert werden.
-    \Viele Teams kombinieren Regeln: z. B. feature/* → Squash, release/* → Merge Commit.
+    Preserve history / Traceability needed → Merge Commit / --no-ff. (große Features, Compliance)  
+    Saubere Main-Branch-History bevorzugt → Squash oder Rebase + Fast-Forward (bei kleinen, häufigen PRs).  
+    Private/topic branches vor Push → Rebase lokal möglich; öffentliche Branches meiden Rebase, weil IDs geändert werden.  
+    Viele Teams kombinieren Regeln: z. B. feature/* → Squash, release/* → Merge Commit.  
 
 Quellen:
 [GitLab Docs: Merge Methods](https://docs.gitlab.com/ee/user/project/merge_requests/methods/)  
