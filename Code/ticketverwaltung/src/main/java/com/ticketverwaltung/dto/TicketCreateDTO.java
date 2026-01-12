@@ -18,7 +18,7 @@ public class TicketCreateDTO {
     @NotNull(message = "Status ist erforderlich.")
     private TicketStatus status;
 
-    @NotBlank(message = "Mitarbeiter-ID ist erforderlich.")
+    @NotBlank(message = "Mitarbeiter-id ist erforderlich.")
     private String employeeId;
 
     private Instant reviewDate;
