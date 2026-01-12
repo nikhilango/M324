@@ -1,0 +1,61 @@
+name: Java CI/CD Pipeline (Maven)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main", "feature/*" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Code auschecken
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 2. Java 17 Umgebung aufsetzen + Maven Caching
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    # 3. Bauen und Testen 
+    - name: Build with Maven
+      run: mvn clean verify --batch-mode
+
+    # 4. Applikation für System-Test starten
+    - name: Start Application for System Test
+      run: |
+        nohup java -jar target/*.jar &
+        echo "Warte auf Start der Applikation..."
+        sleep 15 # Wartezeit, bis Spring Boot komplett hochgefahren ist
+
+    # 5. System Test (Extern gesteuert via Curl) 
+    - name: Run Smoke Test (Curl)
+      run: |
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/api/employees)
+        if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ]; then
+          echo "SUCCESS: App responded with $http_code"
+        else
+          echo "FAILURE: App responded with $http_code"
+          exit 1
+        fi
+
+    # 6. Test-Ergebnisse veröffentlichen (optional)
+    - name: Publish Test Report
+      uses: mikepenz/action-junit-report@v4
+      if: always()
+      with:
+        report_paths: '**/target/surefire-reports/TEST-*.xml'
+
+    # 7. Artefakt hochladen (Die fertige .jar Datei)
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: application-jar
+        path: target/*.jar
+        retention-days: 5
