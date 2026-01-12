@@ -79,25 +79,25 @@ public class TicketService {
         if (status == TicketStatus.OPEN || status == TicketStatus.IN_PROGRESS) {
             if (dto.getReviewDate() != null || dto.getDoneDate() != null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Review- und Done-Datum dürfen nicht gesetzt sein, wenn Status OPEN oder IN_PROGRESS ist.");
+                        "Review und Done Datum dürfen nicht gesetzt sein, wenn Status OPEN oder IN_PROGRESS ist.");
             }
         } else if (status == TicketStatus.REVIEW) {
             if (dto.getReviewDate() == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Review-Datum muss gesetzt sein, wenn Status REVIEW ist.");
+                        "Review Datum muss gesetzt sein, wenn Status REVIEW ist.");
             }
             if (dto.getDoneDate() != null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Done-Datum darf nicht gesetzt sein, wenn Status REVIEW ist.");
+                        "Done Datum darf nicht gesetzt sein, wenn Status REVIEW ist.");
             }
         } else if (status == TicketStatus.DONE) {
             if (dto.getReviewDate() == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Review-Datum muss gesetzt sein, wenn Status DONE ist (da es den Review-Status durchlaufen haben muss).");
+                        "Review Datum muss gesetzt sein, wenn Status DONE ist (da es den Review-Status durchlaufen haben muss).");
             }
             if (dto.getDoneDate() == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Done-Datum muss gesetzt sein, wenn Status DONE ist.");
+                        "Done Datum muss gesetzt sein, wenn Status DONE ist.");
             }
         }
     }
