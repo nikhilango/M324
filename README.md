@@ -5,6 +5,9 @@
 - [T2: The Three Ways](Theorie/T2/TheThreeWays.md)
 - [T3: DevOps Prozesse](Theorie/T3/DevOps%20Prozesse.md)
 
+## Projekt
+- [P3: CI](https://docs.google.com/document/d/1_gbhQPEZUmKgLVAnUa7JU_InpurndpjqY5wBp-rT7hc/edit?usp=sharing)
+
 ## Zusätze
 - [Z2: Research & Tutorial](https://docs.google.com/document/d/18R1_abZoHa5T_hzX6daf_KRlYbX9YILtVW85FW06d_E/edit?usp=sharing)
 
