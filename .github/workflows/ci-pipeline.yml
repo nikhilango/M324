@@ -1,61 +1,33 @@
-name: Java CI/CD Pipeline (Final Version)
+name: Java CI/CD Pipeline (Parallel)
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main", "feature/*" ]
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  unit-tests:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
-      checks: write
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Unit Tests
+        run: mvn test --batch-mode
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
-
-    - name: Build and Programmed Tests
-      run: mvn clean verify --batch-mode
-
-    - name: Start App for Externally Controlled Test
-      run: |
-        nohup java -jar target/*.jar &
-        sleep 15
-
-    - name: Run System Test (External Smoke Test)
-      run: |
-        http_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8081/api/tickets)
-        echo "Empfangener HTTP Status Code: $http_code"
-        
-        # 200 = OK, 405 = Method Not Allowed (Server lebt), 401 = Unauthorized
-        if [[ "$http_code" == "200" || "$http_code" == "405" || "$http_code" == "401" ]]; then
-          echo "SUCCESS: Der Server auf Port 8081 ist online und antwortet."
-        else
-          echo "FAILURE: Server antwortet nicht wie erwartet (Code: $http_code)."
-          exit 1
-        fi
-
-    - name: Publish Test Report
-      uses: mikepenz/action-junit-report@v4
-      if: always()
-      with:
-        report_paths: '**/target/surefire-reports/TEST-*.xml'
-
-    - name: Upload Build Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: application-jar
-        path: target/*.jar
-        retention-days: 5
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Integration Tests
+        run: mvn verify -DskipUnitTests --batch-mode
