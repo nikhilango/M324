@@ -1,33 +1,70 @@
-name: Java CI/CD Pipeline (Parallel)
+name: Java CI/CD Pipeline (Variante 3)
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main", "feature/*" ]
   workflow_dispatch:
 
 jobs:
-  unit-tests:
+  build-and-test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
-      - name: Run Unit Tests
-        run: mvn test --batch-mode
+    
+    # für den JUnit-Report (Test-Prozesse)
+    permissions:
+      contents: read
+      checks: write
 
-  integration-tests:
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
-      - name: Run Integration Tests
-        run: mvn verify -DskipUnitTests --batch-mode
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Build and Programmed Tests
+      run: mvn clean verify --batch-mode
+
+    - name: Start App for Externally Controlled Test
+      # Startet die App im Hintergrund für den System-Test (Smoke Test)
+      run: |
+        nohup java -jar target/*.jar > app_log.txt 2>&1 &
+        echo "Warte auf App-Start..."
+        # Dynamisches Warten oder ausreichend langer Sleep
+        sleep 30
+
+    - name: Run System Test (External Smoke Test)
+      # Extern gesteuerter Test
+      run: |
+        # Port 8080 für Mitarbeiter, 8081 für Tickets (hier Port 8081 als Beispiel)
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8081/api/tickets)
+        echo "Status Code: $http_code"
+        # Akzeptiert 200, 401 oder 405 als Lebenszeichen der App
+        if [[ "$http_code" == "200" || "$http_code" == "405" || "$http_code" == "401" ]]; then
+          echo "SUCCESS: System-Test bestanden (App ist erreichbar)."
+        else
+          echo "FAILURE: App antwortet nicht korrekt (Code: $http_code)."
+          # Falls Fehler, zeige die letzten Log-Zeilen der App
+          tail -n 20 app_log.txt
+          exit 1
+        fi
+
+    - name: Publish Test Report
+      # Test-Resultate
+      uses: mikepenz/action-junit-report@v4
+      if: always()
+      with:
+        report_paths: '**/target/surefire-reports/TEST-*.xml'
+
+    - name: Upload Build Artifact
+      # Speichert das fertige .jar File
+      uses: actions/upload-artifact@v4
+      with:
+        name: application-jar
+        path: target/*.jar
+        retention-days: 5
