@@ -1,10 +1,11 @@
-name: Java CI/CD Pipeline
+name: Java CI/CD Pipeline (Final Version)
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main", "feature/*" ]
+  workflow_dispatch:
 
 jobs:
   build-and-test:
@@ -23,9 +24,25 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+        cache: 'maven'
 
-    - name: Build with Maven
+    - name: Build and Programmed Tests
       run: mvn clean verify --batch-mode
+
+    - name: Start App for Externally Controlled Test
+      run: |
+        nohup java -jar target/*.jar &
+        sleep 15
+
+    - name: Run System Test (External Smoke Test)
+      run: |
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/api/employees)
+        if [ "$http_code" -eq 200 ]; then
+          echo "SUCCESS: System-Test bestanden (HTTP 200)"
+        else
+          echo "FAILURE: System-Test fehlgeschlagen (HTTP $http_code)"
+          exit 1
+        fi
 
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v4
