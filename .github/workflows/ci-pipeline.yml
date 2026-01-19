@@ -1,17 +1,17 @@
-name: CI Pipeline
+name: Java CI/CD Pipeline
 
 on:
   push:
-    branches: [main, master]
+    branches: ["main"]
   pull_request:
-    branches: [main, master]
+    branches: ["main", "feature/*"]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -24,5 +24,16 @@ jobs:
       - name: Build with Maven
         run: mvn clean verify --batch-mode
 
-      - name: Run Tests
-        run: mvn test --batch-mode
+        # tests veröffentlichen 
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: "**/target/surefire-reports/TEST-*.xml"
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-jar
+          path: target/*.jar
+          retention-days: 5
