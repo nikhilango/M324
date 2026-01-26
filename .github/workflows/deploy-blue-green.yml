@@ -1,0 +1,114 @@
+name: Blue-Green Deploy
+
+on:
+  workflow_run:
+    workflows: ["Java CI/CD Pipeline (Final Version)"]
+    types:
+      - completed
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Deploy target (blue or green)"
+        required: true
+        default: "green"
+        type: choice
+        options:
+          - blue
+          - green
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Determine Target Environment
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "target=${{ github.event.inputs.target }}" >> $GITHUB_OUTPUT
+          else
+            # Auto-detect: find which target group has 0 weight and deploy there
+            LISTENER_ARN=$(aws elbv2 describe-listeners \
+              --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-load-balancer --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
+              --query 'Listeners[0].ListenerArn' --output text)
+            
+            # Get current weights
+            RULES=$(aws elbv2 describe-rules --listener-arn $LISTENER_ARN --query 'Rules[0].Actions[0].ForwardConfig.TargetGroups')
+            
+            # Check if blue has weight 0 (meaning green is active, so deploy to blue)
+            BLUE_WEIGHT=$(echo $RULES | jq '.[] | select(.TargetGroupArn | contains("tg-blue")) | .Weight')
+            
+            if [ "$BLUE_WEIGHT" == "0" ]; then
+              echo "target=blue" >> $GITHUB_OUTPUT
+            else
+              echo "target=green" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Get Target Group ARNs
+        id: tg
+        run: |
+          BLUE_ARN=$(aws elbv2 describe-target-groups --names tg-blue --query 'TargetGroups[0].TargetGroupArn' --output text)
+          GREEN_ARN=$(aws elbv2 describe-target-groups --names tg-green --query 'TargetGroups[0].TargetGroupArn' --output text)
+          LISTENER_ARN=$(aws elbv2 describe-listeners \
+            --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-load-balancer --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
+            --query 'Listeners[0].ListenerArn' --output text)
+
+          echo "blue_arn=$BLUE_ARN" >> $GITHUB_OUTPUT
+          echo "green_arn=$GREEN_ARN" >> $GITHUB_OUTPUT
+          echo "listener_arn=$LISTENER_ARN" >> $GITHUB_OUTPUT
+
+      - name: Switch Traffic to ${{ steps.target.outputs.target }}
+        run: |
+          TARGET="${{ steps.target.outputs.target }}"
+
+          if [ "$TARGET" == "blue" ]; then
+            BLUE_WEIGHT=100
+            GREEN_WEIGHT=0
+          else
+            BLUE_WEIGHT=0
+            GREEN_WEIGHT=100
+          fi
+
+          aws elbv2 modify-listener --listener-arn ${{ steps.tg.outputs.listener_arn }} \
+            --default-actions '[{
+              "Type": "forward",
+              "ForwardConfig": {
+                "TargetGroups": [
+                  {"TargetGroupArn": "${{ steps.tg.outputs.blue_arn }}", "Weight": '"$BLUE_WEIGHT"'},
+                  {"TargetGroupArn": "${{ steps.tg.outputs.green_arn }}", "Weight": '"$GREEN_WEIGHT"'}
+                ]
+              }
+            }]'
+
+          echo "✅ Traffic switched to $TARGET (weight: 100%)"
+
+      - name: Verify Deployment
+        run: |
+          ALB_DNS=$(aws elbv2 describe-load-balancers --names p4-load-balancer --query 'LoadBalancers[0].DNSName' --output text)
+          echo "🌐 Application URL: http://$ALB_DNS"
+
+          # Wait a bit for the switch to propagate
+          sleep 10
+
+          # Health check
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "http://$ALB_DNS/api/employees" || echo "000")
+
+          if [ "$HTTP_STATUS" == "200" ]; then
+            echo "✅ Health check passed (HTTP $HTTP_STATUS)"
+          else
+            echo "⚠️ Health check returned HTTP $HTTP_STATUS"
+          fi
