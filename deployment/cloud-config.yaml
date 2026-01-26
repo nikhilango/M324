@@ -1,9 +1,9 @@
 #cloud-config
 package_update: true
-package_upgrade: true
 
 packages:
   - docker.io
+  - awscli
 
 write_files:
   - path: /etc/systemd/system/mitarbeiterverwaltung.service
@@ -19,8 +19,9 @@ write_files:
       Restart=always
       ExecStartPre=-/usr/bin/docker stop mitarbeiter-app
       ExecStartPre=-/usr/bin/docker rm mitarbeiter-app
-      ExecStartPre=/usr/bin/docker pull burakadanir/mitarbeiterverwaltung:latest
-      ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8080 burakadanir/mitarbeiterverwaltung:latest
+      ExecStartPre=/bin/sh -c 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 233084807897.dkr.ecr.us-east-1.amazonaws.com'
+      ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+      ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8080 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
 
       [Install]
       WantedBy=multi-user.target

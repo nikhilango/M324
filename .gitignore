@@ -11,3 +11,5 @@ _override.tf
 _override.tf.json
 .terraformrc
 terraform.rc
+deployment/debug_key
+deployment/debug_key.pub
