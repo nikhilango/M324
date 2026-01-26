@@ -86,7 +86,7 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_instance" "blue" {
-  ami           = "ami-0e35ddab05955cf57"
+  ami           = "ami-0c7217cdde317cfec"
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.sub1.id
   user_data     = file("cloud-config.yaml")
@@ -97,7 +97,7 @@ resource "aws_instance" "blue" {
 }
 
 resource "aws_instance" "green" {
-  ami           = "ami-0e35ddab05955cf57"
+  ami           = "ami-0c7217cdde317cfec"
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.sub2.id
   user_data     = file("cloud-config.yaml")
