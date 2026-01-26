@@ -42,14 +42,14 @@ jobs:
           else
             # Auto-detect: find which target group has 0 weight and deploy there
             LISTENER_ARN=$(aws elbv2 describe-listeners \
-              --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-load-balancer --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
+              --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-alb --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
               --query 'Listeners[0].ListenerArn' --output text)
             
             # Get current weights
             RULES=$(aws elbv2 describe-rules --listener-arn $LISTENER_ARN --query 'Rules[0].Actions[0].ForwardConfig.TargetGroups')
             
             # Check if blue has weight 0 (meaning green is active, so deploy to blue)
-            BLUE_WEIGHT=$(echo $RULES | jq '.[] | select(.TargetGroupArn | contains("tg-blue")) | .Weight')
+            BLUE_WEIGHT=$(echo $RULES | jq '.[] | select(.TargetGroupArn | contains("tg-employees-blue")) | .Weight')
             
             if [ "$BLUE_WEIGHT" == "0" ]; then
               echo "target=blue" >> $GITHUB_OUTPUT
@@ -61,10 +61,10 @@ jobs:
       - name: Get Target Group ARNs
         id: tg
         run: |
-          BLUE_ARN=$(aws elbv2 describe-target-groups --names tg-blue --query 'TargetGroups[0].TargetGroupArn' --output text)
-          GREEN_ARN=$(aws elbv2 describe-target-groups --names tg-green --query 'TargetGroups[0].TargetGroupArn' --output text)
+          BLUE_ARN=$(aws elbv2 describe-target-groups --names tg-employees-blue --query 'TargetGroups[0].TargetGroupArn' --output text)
+          GREEN_ARN=$(aws elbv2 describe-target-groups --names tg-employees-green --query 'TargetGroups[0].TargetGroupArn' --output text)
           LISTENER_ARN=$(aws elbv2 describe-listeners \
-            --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-load-balancer --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
+            --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-alb --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
             --query 'Listeners[0].ListenerArn' --output text)
 
           echo "blue_arn=$BLUE_ARN" >> $GITHUB_OUTPUT
@@ -98,7 +98,7 @@ jobs:
 
       - name: Verify Deployment
         run: |
-          ALB_DNS=$(aws elbv2 describe-load-balancers --names p4-load-balancer --query 'LoadBalancers[0].DNSName' --output text)
+          ALB_DNS=$(aws elbv2 describe-load-balancers --names p4-alb --query 'LoadBalancers[0].DNSName' --output text)
           echo "🌐 Application URL: http://$ALB_DNS"
 
           # Wait a bit for the switch to propagate

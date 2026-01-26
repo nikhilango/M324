@@ -80,14 +80,14 @@ resource "aws_security_group" "web_sg" {
 }
 
 resource "aws_lb" "app_alb" {
-  name               = "p4-load-balancer"
+  name               = "p4-alb"
   load_balancer_type = "application"
   subnets            = [aws_subnet.sub1.id, aws_subnet.sub2.id]
   security_groups    = [aws_security_group.web_sg.id]
 }
 
 resource "aws_lb_target_group" "blue" {
-  name     = "tg-blue"
+  name     = "tg-employees-blue"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
@@ -97,7 +97,7 @@ resource "aws_lb_target_group" "blue" {
 }
 
 resource "aws_lb_target_group" "green" {
-  name     = "tg-green"
+  name     = "tg-employees-green"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
