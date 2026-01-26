@@ -37,3 +37,11 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/nikola/ticket-backend:latest . 
           docker push $ECR_REGISTRY/nikola/ticket-backend:latest
+
+      - name: Update ECS Service Mitarbeiterverwaltung
+        run: |
+          aws ecs update-service --cluster AWS_Fargate_m324 --service mitarbeiter-service --force-new-deployment
+
+      - name: Update ECS Service Ticketverwaltung
+        run: |
+          aws ecs update-service --cluster AWS_Fargate_m324 --service ticket-service --force-new-deployment
