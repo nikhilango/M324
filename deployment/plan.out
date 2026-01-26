@@ -1,0 +1,729 @@
+aws_key_pair.debug: Refreshing state... [id=debug-key]
+aws_vpc.main: Refreshing state... [id=vpc-0cc9f55110e5bbf49]
+aws_lb_target_group.tickets_blue: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-tickets-blue/b5225bcb83ddf08f]
+aws_lb_target_group.tickets_green: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-tickets-green/f50a2a75f7836e4c]
+aws_lb_target_group.employees_blue: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-employees-blue/e0ad5c06ff26cac4]
+aws_security_group.p4_sg: Refreshing state... [id=sg-06714eb93f35bff28]
+aws_lb_target_group.employees_green: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-employees-green/c90a9c3a0fee79f9]
+aws_internet_gateway.gw: Refreshing state... [id=igw-0dc79bcaa8595e22f]
+aws_subnet.sub2: Refreshing state... [id=subnet-0346c2d0e32964926]
+aws_subnet.sub1: Refreshing state... [id=subnet-04703ddfebcbe1187]
+aws_security_group.web_sg: Refreshing state... [id=sg-074a07e676cf10132]
+aws_route_table.rt: Refreshing state... [id=rtb-04ea5df18241d1a29]
+aws_lb.app_alb: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:233084807897:loadbalancer/app/p4-alb/c0d19034311a82d6]
+aws_instance.blue: Refreshing state... [id=i-0da965f3583e111e5]
+aws_instance.green: Refreshing state... [id=i-0370f666a00c45967]
+aws_route_table_association.b: Refreshing state... [id=rtbassoc-0b060307e45aa5cac]
+aws_route_table_association.a: Refreshing state... [id=rtbassoc-0c997704b5c55f35f]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+  ~ update in-place
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.blue will be updated in-place
+  ~ resource "aws_instance" "blue" {
+        id                                   = "i-0da965f3583e111e5"
+      + public_dns                           = (known after apply)
+      ~ public_ip                            = "3.95.167.181" -> (known after apply)
+        tags                                 = {
+            "Name" = "App-Blue"
+        }
+      ~ user_data                            = <<-EOT
+            #cloud-config
+            package_update: true
+            
+            packages:
+              - docker.io
+              - awscli
+            
+            write_files:
+          -   - path: /etc/systemd/system/mitarbeiter.service
+          +   - path: /etc/systemd/system/mitarbeiterverwaltung.service
+                permissions: "0644"
+                content: |
+                  [Unit]
+          -       Description=Mitarbeiterverwaltung Docker Service
+          +       Description=Mitarbeiterverwaltung Spring Boot Application
+                  After=docker.service
+                  Requires=docker.service
+            
+                  [Service]
+          +       TimeoutStartSec=0
+                  Restart=always
+          -       ExecStartPre=-/usr/bin/docker stop mitarbeiter
+          -       ExecStartPre=-/usr/bin/docker rm mitarbeiter
+          +       ExecStartPre=-/usr/bin/docker stop mitarbeiter-app
+          +       ExecStartPre=-/usr/bin/docker rm mitarbeiter-app
+                  ExecStartPre=/bin/sh -c 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 233084807897.dkr.ecr.us-east-1.amazonaws.com'
+                  ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+          -       ExecStart=/usr/bin/docker run --name mitarbeiter -p 8080:8080 -e "JAVA_OPTS=-Xmx256m -Xms256m" 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+          -       ExecStop=/usr/bin/docker stop mitarbeiter
+          +       ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8080 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+            
+                  [Install]
+                  WantedBy=multi-user.target
+            
+          -   - path: /etc/systemd/system/tickets.service
+          -     permissions: "0644"
+          -     content: |
+          -       [Unit]
+          -       Description=Ticketverwaltung Docker Service
+          -       After=docker.service
+          -       Requires=docker.service
+          - 
+          -       [Service]
+          -       Restart=always
+          -       ExecStartPre=-/usr/bin/docker stop tickets
+          -       ExecStartPre=-/usr/bin/docker rm tickets
+          -       ExecStartPre=/bin/sh -c 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 233084807897.dkr.ecr.us-east-1.amazonaws.com'
+          -       ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:v4
+          -       ExecStart=/usr/bin/docker run --name tickets -p 8082:8080 -e "JAVA_OPTS=-Xmx256m -Xms256m" 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:v4
+          -       ExecStop=/usr/bin/docker stop tickets
+          - 
+          -       [Install]
+          -       WantedBy=multi-user.target
+          - 
+            runcmd:
+              - systemctl daemon-reload
+          -   - systemctl enable mitarbeiter.service tickets.service
+          -   - systemctl start mitarbeiter.service tickets.service
+          +   - systemctl enable mitarbeiterverwaltung.service
+          +   - systemctl start mitarbeiterverwaltung.service
+        EOT
+      ~ vpc_security_group_ids               = [
+          - "sg-06714eb93f35bff28",
+          + "sg-074a07e676cf10132",
+        ]
+        # (37 unchanged attributes hidden)
+
+        # (9 unchanged blocks hidden)
+    }
+
+  # aws_instance.green will be updated in-place
+  ~ resource "aws_instance" "green" {
+        id                                   = "i-0370f666a00c45967"
+      + public_dns                           = (known after apply)
+      ~ public_ip                            = "13.221.116.167" -> (known after apply)
+        tags                                 = {
+            "Name" = "App-Green"
+        }
+      ~ user_data                            = <<-EOT
+            #cloud-config
+            package_update: true
+            
+            packages:
+              - docker.io
+              - awscli
+            
+            write_files:
+          -   - path: /etc/systemd/system/mitarbeiter.service
+          +   - path: /etc/systemd/system/mitarbeiterverwaltung.service
+                permissions: "0644"
+                content: |
+                  [Unit]
+          -       Description=Mitarbeiterverwaltung Docker Service
+          +       Description=Mitarbeiterverwaltung Spring Boot Application
+                  After=docker.service
+                  Requires=docker.service
+            
+                  [Service]
+          +       TimeoutStartSec=0
+                  Restart=always
+          -       ExecStartPre=-/usr/bin/docker stop mitarbeiter
+          -       ExecStartPre=-/usr/bin/docker rm mitarbeiter
+          +       ExecStartPre=-/usr/bin/docker stop mitarbeiter-app
+          +       ExecStartPre=-/usr/bin/docker rm mitarbeiter-app
+                  ExecStartPre=/bin/sh -c 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 233084807897.dkr.ecr.us-east-1.amazonaws.com'
+                  ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+          -       ExecStart=/usr/bin/docker run --name mitarbeiter -p 8080:8080 -e "JAVA_OPTS=-Xmx256m -Xms256m" 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+          -       ExecStop=/usr/bin/docker stop mitarbeiter
+          +       ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8080 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
+            
+                  [Install]
+                  WantedBy=multi-user.target
+            
+          -   - path: /etc/systemd/system/tickets.service
+          -     permissions: "0644"
+          -     content: |
+          -       [Unit]
+          -       Description=Ticketverwaltung Docker Service
+          -       After=docker.service
+          -       Requires=docker.service
+          - 
+          -       [Service]
+          -       Restart=always
+          -       ExecStartPre=-/usr/bin/docker stop tickets
+          -       ExecStartPre=-/usr/bin/docker rm tickets
+          -       ExecStartPre=/bin/sh -c 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 233084807897.dkr.ecr.us-east-1.amazonaws.com'
+          -       ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:v4
+          -       ExecStart=/usr/bin/docker run --name tickets -p 8082:8080 -e "JAVA_OPTS=-Xmx256m -Xms256m" 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:v4
+          -       ExecStop=/usr/bin/docker stop tickets
+          - 
+          -       [Install]
+          -       WantedBy=multi-user.target
+          - 
+            runcmd:
+              - systemctl daemon-reload
+          -   - systemctl enable mitarbeiter.service tickets.service
+          -   - systemctl start mitarbeiter.service tickets.service
+          +   - systemctl enable mitarbeiterverwaltung.service
+          +   - systemctl start mitarbeiterverwaltung.service
+        EOT
+      ~ vpc_security_group_ids               = [
+          - "sg-06714eb93f35bff28",
+          + "sg-074a07e676cf10132",
+        ]
+        # (37 unchanged attributes hidden)
+
+        # (9 unchanged blocks hidden)
+    }
+
+  # aws_lb_listener.http will be created
+  + resource "aws_lb_listener" "http" {
+      + arn                                                                   = (known after apply)
+      + id                                                                    = (known after apply)
+      + load_balancer_arn                                                     = "arn:aws:elasticloadbalancing:us-east-1:233084807897:loadbalancer/app/p4-alb/c0d19034311a82d6"
+      + port                                                                  = 80
+      + protocol                                                              = "HTTP"
+      + region                                                                = "us-east-1"
+      + routing_http_request_x_amzn_mtls_clientcert_header_name               = (known after apply)
+      + routing_http_request_x_amzn_mtls_clientcert_issuer_header_name        = (known after apply)
+      + routing_http_request_x_amzn_mtls_clientcert_leaf_header_name          = (known after apply)
+      + routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name = (known after apply)
+      + routing_http_request_x_amzn_mtls_clientcert_subject_header_name       = (known after apply)
+      + routing_http_request_x_amzn_mtls_clientcert_validity_header_name      = (known after apply)
+      + routing_http_request_x_amzn_tls_cipher_suite_header_name              = (known after apply)
+      + routing_http_request_x_amzn_tls_version_header_name                   = (known after apply)
+      + routing_http_response_access_control_allow_credentials_header_value   = (known after apply)
+      + routing_http_response_access_control_allow_headers_header_value       = (known after apply)
+      + routing_http_response_access_control_allow_methods_header_value       = (known after apply)
+      + routing_http_response_access_control_allow_origin_header_value        = (known after apply)
+      + routing_http_response_access_control_expose_headers_header_value      = (known after apply)
+      + routing_http_response_access_control_max_age_header_value             = (known after apply)
+      + routing_http_response_content_security_policy_header_value            = (known after apply)
+      + routing_http_response_server_enabled                                  = (known after apply)
+      + routing_http_response_strict_transport_security_header_value          = (known after apply)
+      + routing_http_response_x_content_type_options_header_value             = (known after apply)
+      + routing_http_response_x_frame_options_header_value                    = (known after apply)
+      + ssl_policy                                                            = (known after apply)
+      + tags_all                                                              = (known after apply)
+      + tcp_idle_timeout_seconds                                              = (known after apply)
+
+      + default_action {
+          + order = (known after apply)
+          + type  = "forward"
+
+          + forward {
+              + target_group {
+                  + arn    = (known after apply)
+                  + weight = 0
+                }
+              + target_group {
+                  + arn    = (known after apply)
+                  + weight = 100
+                }
+            }
+        }
+
+      + mutual_authentication (known after apply)
+    }
+
+  # aws_lb_target_group.blue will be created
+  + resource "aws_lb_target_group" "blue" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = (known after apply)
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + ip_address_type                    = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancer_arns                 = (known after apply)
+      + load_balancing_algorithm_type      = (known after apply)
+      + load_balancing_anomaly_mitigation  = (known after apply)
+      + load_balancing_cross_zone_enabled  = (known after apply)
+      + name                               = "tg-employees-blue"
+      + name_prefix                        = (known after apply)
+      + port                               = 8080
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + region                             = "us-east-1"
+      + slow_start                         = 0
+      + tags_all                           = (known after apply)
+      + target_type                        = "instance"
+      + vpc_id                             = "vpc-0cc9f55110e5bbf49"
+
+      + health_check {
+          + enabled             = true
+          + healthy_threshold   = 3
+          + interval            = 30
+          + matcher             = (known after apply)
+          + path                = "/api/employees"
+          + port                = "traffic-port"
+          + protocol            = "HTTP"
+          + timeout             = (known after apply)
+          + unhealthy_threshold = 3
+        }
+
+      + stickiness (known after apply)
+
+      + target_failover (known after apply)
+
+      + target_group_health (known after apply)
+
+      + target_health_state (known after apply)
+    }
+
+  # aws_lb_target_group.employees_blue will be destroyed
+  # (because aws_lb_target_group.employees_blue is not in configuration)
+  - resource "aws_lb_target_group" "employees_blue" {
+      - arn                                = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-employees-blue/e0ad5c06ff26cac4" -> null
+      - arn_suffix                         = "targetgroup/tg-employees-blue/e0ad5c06ff26cac4" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-employees-blue/e0ad5c06ff26cac4" -> null
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "tg-employees-blue" -> null
+      - port                               = 8080 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - region                             = "us-east-1" -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+      - target_control_port                = 0 -> null
+      - target_type                        = "instance" -> null
+      - vpc_id                             = "vpc-0cc9f55110e5bbf49" -> null
+        # (1 unchanged attribute hidden)
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 2 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/api/employees" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 3 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_lb_target_group.employees_green will be destroyed
+  # (because aws_lb_target_group.employees_green is not in configuration)
+  - resource "aws_lb_target_group" "employees_green" {
+      - arn                                = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-employees-green/c90a9c3a0fee79f9" -> null
+      - arn_suffix                         = "targetgroup/tg-employees-green/c90a9c3a0fee79f9" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-employees-green/c90a9c3a0fee79f9" -> null
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "tg-employees-green" -> null
+      - port                               = 8080 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - region                             = "us-east-1" -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+      - target_control_port                = 0 -> null
+      - target_type                        = "instance" -> null
+      - vpc_id                             = "vpc-0cc9f55110e5bbf49" -> null
+        # (1 unchanged attribute hidden)
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 2 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/api/employees" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 3 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_lb_target_group.green will be created
+  + resource "aws_lb_target_group" "green" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = (known after apply)
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + ip_address_type                    = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancer_arns                 = (known after apply)
+      + load_balancing_algorithm_type      = (known after apply)
+      + load_balancing_anomaly_mitigation  = (known after apply)
+      + load_balancing_cross_zone_enabled  = (known after apply)
+      + name                               = "tg-employees-green"
+      + name_prefix                        = (known after apply)
+      + port                               = 8080
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + region                             = "us-east-1"
+      + slow_start                         = 0
+      + tags_all                           = (known after apply)
+      + target_type                        = "instance"
+      + vpc_id                             = "vpc-0cc9f55110e5bbf49"
+
+      + health_check (known after apply)
+
+      + stickiness (known after apply)
+
+      + target_failover (known after apply)
+
+      + target_group_health (known after apply)
+
+      + target_health_state (known after apply)
+    }
+
+  # aws_lb_target_group.tickets_blue will be destroyed
+  # (because aws_lb_target_group.tickets_blue is not in configuration)
+  - resource "aws_lb_target_group" "tickets_blue" {
+      - arn                                = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-tickets-blue/b5225bcb83ddf08f" -> null
+      - arn_suffix                         = "targetgroup/tg-tickets-blue/b5225bcb83ddf08f" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-tickets-blue/b5225bcb83ddf08f" -> null
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "tg-tickets-blue" -> null
+      - port                               = 8082 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - region                             = "us-east-1" -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+      - target_control_port                = 0 -> null
+      - target_type                        = "instance" -> null
+      - vpc_id                             = "vpc-0cc9f55110e5bbf49" -> null
+        # (1 unchanged attribute hidden)
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 2 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/api/tickets" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 3 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_lb_target_group.tickets_green will be destroyed
+  # (because aws_lb_target_group.tickets_green is not in configuration)
+  - resource "aws_lb_target_group" "tickets_green" {
+      - arn                                = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-tickets-green/f50a2a75f7836e4c" -> null
+      - arn_suffix                         = "targetgroup/tg-tickets-green/f50a2a75f7836e4c" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "arn:aws:elasticloadbalancing:us-east-1:233084807897:targetgroup/tg-tickets-green/f50a2a75f7836e4c" -> null
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "tg-tickets-green" -> null
+      - port                               = 8082 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - region                             = "us-east-1" -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+      - target_control_port                = 0 -> null
+      - target_type                        = "instance" -> null
+      - vpc_id                             = "vpc-0cc9f55110e5bbf49" -> null
+        # (1 unchanged attribute hidden)
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 2 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/api/tickets" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 3 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_lb_target_group_attachment.blue will be created
+  + resource "aws_lb_target_group_attachment" "blue" {
+      + id               = (known after apply)
+      + port             = 8080
+      + region           = "us-east-1"
+      + target_group_arn = (known after apply)
+      + target_id        = "i-0da965f3583e111e5"
+    }
+
+  # aws_lb_target_group_attachment.green will be created
+  + resource "aws_lb_target_group_attachment" "green" {
+      + id               = (known after apply)
+      + port             = 8080
+      + region           = "us-east-1"
+      + target_group_arn = (known after apply)
+      + target_id        = "i-0370f666a00c45967"
+    }
+
+  # aws_security_group.p4_sg will be destroyed
+  # (because aws_security_group.p4_sg is not in configuration)
+  - resource "aws_security_group" "p4_sg" {
+      - arn                    = "arn:aws:ec2:us-east-1:233084807897:security-group/sg-06714eb93f35bff28" -> null
+      - description            = "Allow HTTP and SSH" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-06714eb93f35bff28" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "HTTP from World"
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Mitarbeiter Service"
+              - from_port        = 8080
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 8080
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "SSH"
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Ticket Service"
+              - from_port        = 8082
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 8082
+            },
+        ] -> null
+      - name                   = "p4-sg" -> null
+      - owner_id               = "233084807897" -> null
+      - region                 = "us-east-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {} -> null
+      - tags_all               = {} -> null
+      - vpc_id                 = "vpc-0cc9f55110e5bbf49" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_security_group.web_sg will be updated in-place
+  ~ resource "aws_security_group" "web_sg" {
+        id                     = "sg-074a07e676cf10132"
+      ~ ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "MitarbeiterService Port 8080"
+              - from_port        = 8080
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 8080
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "TicketService Port 8082"
+              - from_port        = 8082
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 8082
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Custom TCP 8080"
+              + from_port        = 8080
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 8080
+            },
+            # (2 unchanged elements hidden)
+        ]
+        name                   = "web-server-sg"
+        tags                   = {}
+        # (9 unchanged attributes hidden)
+    }
+
+Plan: 5 to add, 3 to change, 5 to destroy.
+
+Changes to Outputs:
+  + blue_ip      = (known after apply)
+  + green_ip     = (known after apply)
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.

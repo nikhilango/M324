@@ -64,6 +64,14 @@ resource "aws_security_group" "web_sg" {
   }
 
   ingress {
+    description = "Custom TCP 8082"
+    from_port   = 8082
+    to_port     = 8082
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     description = "SSH"
     from_port   = 22
     to_port     = 22
@@ -106,6 +114,26 @@ resource "aws_lb_target_group" "green" {
   }
 }
 
+resource "aws_lb_target_group" "tickets_blue" {
+  name     = "tg-tickets-blue"
+  port     = 8082
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
+  health_check {
+    path = "/api/tickets/stats"
+  }
+}
+
+resource "aws_lb_target_group" "tickets_green" {
+  name     = "tg-tickets-green"
+  port     = 8082
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
+  health_check {
+    path = "/api/tickets/stats"
+  }
+}
+
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.app_alb.arn
   port              = "80"
@@ -122,6 +150,56 @@ resource "aws_lb_listener" "http" {
         arn    = aws_lb_target_group.green.arn
         weight = 0
       }
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "tickets" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 10
+
+  action {
+    type = "forward"
+    forward {
+      target_group {
+        arn    = aws_lb_target_group.tickets_blue.arn
+        weight = 100
+      }
+      target_group {
+        arn    = aws_lb_target_group.tickets_green.arn
+        weight = 0
+      }
+    }
+  }
+
+  condition {
+    path_pattern {
+      values = ["/api/tickets*"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "employees" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 20
+
+  action {
+    type = "forward"
+    forward {
+      target_group {
+        arn    = aws_lb_target_group.blue.arn
+        weight = 100
+      }
+      target_group {
+        arn    = aws_lb_target_group.green.arn
+        weight = 0
+      }
+    }
+  }
+
+  condition {
+    path_pattern {
+      values = ["/api/employees*"]
     }
   }
 }
@@ -164,6 +242,18 @@ resource "aws_lb_target_group_attachment" "green" {
   target_group_arn = aws_lb_target_group.green.arn
   target_id        = aws_instance.green.id
   port             = 8080
+}
+
+resource "aws_lb_target_group_attachment" "tickets_blue" {
+  target_group_arn = aws_lb_target_group.tickets_blue.arn
+  target_id        = aws_instance.blue.id
+  port             = 8082
+}
+
+resource "aws_lb_target_group_attachment" "tickets_green" {
+  target_group_arn = aws_lb_target_group.tickets_green.arn
+  target_id        = aws_instance.green.id
+  port             = 8082
 }
 
 resource "aws_key_pair" "debug" {

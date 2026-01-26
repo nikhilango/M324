@@ -23,10 +23,30 @@ write_files:
       ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
       ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8080 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:latest
 
+      ExecStop=/usr/bin/docker stop mitarbeiter-app
+
+  - path: /etc/systemd/system/ticketverwaltung.service
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Ticketverwaltung Spring Boot Application
+      After=docker.service
+      Requires=docker.service
+
+      [Service]
+      TimeoutStartSec=0
+      Restart=always
+      ExecStartPre=-/usr/bin/docker stop ticket-app
+      ExecStartPre=-/usr/bin/docker rm ticket-app
+      ExecStartPre=/bin/sh -c 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 233084807897.dkr.ecr.us-east-1.amazonaws.com'
+      ExecStartPre=/usr/bin/docker pull 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:v4
+      ExecStart=/usr/bin/docker run --name ticket-app -p 8082:8080 233084807897.dkr.ecr.us-east-1.amazonaws.com/mitarbeiterverwaltung:v4
+      ExecStop=/usr/bin/docker stop ticket-app
+
       [Install]
       WantedBy=multi-user.target
 
 runcmd:
   - systemctl daemon-reload
-  - systemctl enable mitarbeiterverwaltung.service
-  - systemctl start mitarbeiterverwaltung.service
+  - systemctl enable mitarbeiterverwaltung.service ticketverwaltung.service
+  - systemctl start mitarbeiterverwaltung.service ticketverwaltung.service
