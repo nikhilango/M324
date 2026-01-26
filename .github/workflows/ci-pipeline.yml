@@ -2,69 +2,92 @@ name: Java CI/CD Pipeline (Variante 3)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main", "feature/*" ]
+    branches: ["main", "feature/*"]
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  test-mitarbeiterverwaltung:
     runs-on: ubuntu-latest
-    
-    # für den JUnit-Report (Test-Prozesse)
     permissions:
       contents: read
       checks: write
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "maven"
 
-    - name: Build and Programmed Tests
-      run: mvn clean verify --batch-mode
+      - name: Build with Maven
+        run: mvn clean verify --batch-mode
+        working-directory: Code/mitarbeiterverwaltung
 
-    - name: Start App for Externally Controlled Test
-      # Startet die App im Hintergrund für den System-Test (Smoke Test)
-      run: |
-        nohup java -jar target/*.jar > app_log.txt 2>&1 &
-        echo "Warte auf App-Start..."
-        # Dynamisches Warten oder ausreichend langer Sleep
-        sleep 30
+      - name: Install Newman
+        run: npm install -g newman
 
-    - name: Run System Test (External Smoke Test)
-      # Extern gesteuerter Test
-      run: |
-        # Port 8080 für Mitarbeiter, 8081 für Tickets (hier Port 8081 als Beispiel)
-        http_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8081/api/tickets)
-        echo "Status Code: $http_code"
-        # Akzeptiert 200, 401 oder 405 als Lebenszeichen der App
-        if [[ "$http_code" == "200" || "$http_code" == "405" || "$http_code" == "401" ]]; then
-          echo "SUCCESS: System-Test bestanden (App ist erreichbar)."
-        else
-          echo "FAILURE: App antwortet nicht korrekt (Code: $http_code)."
-          # Falls Fehler, zeige die letzten Log-Zeilen der App
-          tail -n 20 app_log.txt
-          exit 1
-        fi
+      - name: Start Mitarbeiterverwaltung
+        run: |
+          mvn spring-boot:run &
+          sleep 30
+        working-directory: Code/mitarbeiterverwaltung
 
-    - name: Publish Test Report
-      # Test-Resultate
-      uses: mikepenz/action-junit-report@v4
-      if: always()
-      with:
-        report_paths: '**/target/surefire-reports/TEST-*.xml'
+      - name: Run Postman Tests
+        run: newman run postman/mitarbeiterverwaltung.postman_collection.json -e postman/environment.json --reporters cli,junit --reporter-junit-export newman-results-mitarbeiter.xml
 
-    - name: Upload Build Artifact
-      # Speichert das fertige .jar File
-      uses: actions/upload-artifact@v4
-      with:
-        name: application-jar
-        path: target/*.jar
-        retention-days: 5
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: "**/target/surefire-reports/TEST-*.xml"
+
+  test-ticketverwaltung:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "maven"
+
+      - name: Build and Start Mitarbeiterverwaltung
+        run: |
+          mvn clean verify --batch-mode -DskipTests
+          mvn spring-boot:run -DskipTests &
+        working-directory: Code/mitarbeiterverwaltung
+
+      - name: Build Ticketverwaltung
+        run: mvn clean verify --batch-mode
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Start Ticketverwaltung
+        run: |
+          mvn spring-boot:run &
+          sleep 45
+
+      - name: Run Postman Tests
+        run: |
+          # 1. Create employee and capture ID
+          newman run postman/mitarbeiterverwaltung.postman_collection.json -e postman/environment.json --export-globals globals.json
+          # 2. Run ticket tests using that ID
+          newman run postman/ticketverwaltung.postman_collection.json -e postman/environment.json --globals globals.json --env-var "baseUrl=http://localhost:8081" --reporters cli,junit --reporter-junit-export newman-results-ticket.xml
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: "**/target/surefire-reports/TEST-*.xml"
