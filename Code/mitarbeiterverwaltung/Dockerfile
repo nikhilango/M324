@@ -1,21 +1,24 @@
-FROM openjdk:17-jdk-slim as build
+FROM eclipse-temurin:17-jdk-jammy as build
 
 WORKDIR /app
 
+COPY mvnw .
+COPY .mvn .mvn
 COPY pom.xml .
 
+RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
 
 COPY src src
-COPY mvnw .
-COPY .mvn .mvn
 
 RUN ./mvnw package -DskipTests
 
-FROM openjdk:17-jre-slim
+FROM eclipse-temurin:17-jre-jammy
+
+WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-
 EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
