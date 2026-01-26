@@ -1,0 +1,13 @@
+{
+	"id": "e2dc0eef-d9c4-4731-b15f-8c84d8d84969",
+	"name": "Local Environment",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment"
+}
