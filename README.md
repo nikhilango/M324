@@ -7,6 +7,7 @@
 
 ## Projekt
 - [P3: CI](https://docs.google.com/document/d/1_gbhQPEZUmKgLVAnUa7JU_InpurndpjqY5wBp-rT7hc/edit?usp=sharing)
+- [P4: CD](https://docs.google.com/document/d/1xO3ZfXbikQGQsh_pb6_e0homWX6yWgPGO9AJ-NqvbYg/edit?tab=t.0)
 
 ## Zusätze
 - [Z2: Research & Tutorial](https://docs.google.com/document/d/18R1_abZoHa5T_hzX6daf_KRlYbX9YILtVW85FW06d_E/edit?usp=sharing)
