@@ -1,0 +1,8 @@
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/TicketverwaltungApplication.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/controller/TicketController.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/dto/EmployeeResponseDTO.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/dto/TicketCreateDTO.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/model/Ticket.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/model/TicketStatus.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/repository/TicketRepository.java
+/Users/omer/github/M324/src/main/java/com/ticketverwaltung/service/TicketService.java
