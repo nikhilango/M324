@@ -11,7 +11,6 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import com.ticketverwaltung.model.TicketStatus;
-import com.ticketverwaltung.repository.TicketRepository;
 
 
 
@@ -20,7 +19,6 @@ import com.ticketverwaltung.repository.TicketRepository;
 public class TicketController {
 
     private final TicketService ticketService;
-    private final TicketRepository ticketRepository;
 
 
     public TicketController(TicketService ticketService) {
@@ -35,22 +33,7 @@ public class TicketController {
 
     @GetMapping("/stats")
     public ResponseEntity<Map<String, Long>> getTicketStats() {
-        Map<String, Long> stats = new HashMap<>();
-        stats.put("total_tickets", ticketRepository.count());
-        stats.put("open_tickets", ticketRepository.countByStatus(TicketStatus.OPEN));
-        stats.put("in_progress_tickets", ticketRepository.countByStatus(TicketStatus.IN_PROGRESS));
-        stats.put("review_tickets", ticketRepository.countByStatus(TicketStatus.REVIEW));
-        stats.put("done_tickets", ticketRepository.countByStatus(TicketStatus.DONE));
-
-        Instant last24Hours = Instant.now().minusSeconds(24 * 60 * 60);
-        Instant last7Days = Instant.now().minusSeconds(7 * 24 * 60 * 60);
-
-        long newTicketsLast24h = ticketRepository.countByCreatedAtAfter(last24Hours);
-        long newTicketsLast7d = ticketRepository.countByCreatedAtAfter(last7Days);
-
-        stats.put("velocity_new_tickets_24h", newTicketsLast24h);
-        stats.put("velocity_new_tickets_7d", newTicketsLast7d);
-    
+       Map<String, Long> stats = ticketService.getTicketStats();
         return ResponseEntity.ok(stats);
     }
 
