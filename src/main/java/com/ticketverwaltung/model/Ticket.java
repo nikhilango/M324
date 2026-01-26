@@ -28,6 +28,7 @@ public class Ticket {
     private Instant reviewDate;
     private Instant doneDate;
     private String employeeId;
+    private Instant createdAt;
 
     public Ticket(String title, String description, TicketStatus status, String employeeId, Instant reviewDate,
             Instant doneDate) {
@@ -38,5 +39,6 @@ public class Ticket {
         this.employeeId = employeeId;
         this.reviewDate = reviewDate;
         this.doneDate = doneDate;
+        this.createdAt = Instant.now();
     }
 }
