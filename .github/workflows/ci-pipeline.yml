@@ -1,4 +1,4 @@
-name: Java CI/CD Pipeline (Variante 3)
+name: Java CI/CD Pipeline (Final Version)
 
 on:
   push:
@@ -81,9 +81,7 @@ jobs:
 
       - name: Run Postman Tests
         run: |
-          # 1. Create employee and capture ID
           newman run postman/mitarbeiterverwaltung.postman_collection.json -e postman/environment.json --export-globals globals.json
-          # 2. Run ticket tests using that ID
           newman run postman/ticketverwaltung.postman_collection.json -e postman/environment.json --globals globals.json --env-var "baseUrl=http://localhost:8081" --reporters cli,junit --reporter-junit-export newman-results-ticket.xml
 
       - name: Publish Test Report
@@ -91,3 +89,33 @@ jobs:
         if: always()
         with:
           report_paths: "**/target/surefire-reports/TEST-*.xml"
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: [test-mitarbeiterverwaltung, test-ticketverwaltung]
+    if: github.ref == 'refs/heads/main' 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login bei DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Mitarbeiterverwaltung
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Code/mitarbeiterverwaltung/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mitarbeiterverwaltung:latest
+
+      - name: Build and Push Ticketverwaltung
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ticketverwaltung:latest
