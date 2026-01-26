@@ -101,6 +101,9 @@ resource "aws_lb_target_group" "green" {
   port     = 8080
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
+  health_check {
+    path = "/api/employees"
+  }
 }
 
 resource "aws_lb_listener" "http" {
