@@ -1,2 +1,31 @@
-# Cloud-config for EC2 instances
-# This file is intentionally basic for now.
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - docker.io
+
+write_files:
+  - path: /etc/systemd/system/mitarbeiterverwaltung.service
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Mitarbeiterverwaltung Spring Boot Application
+      After=docker.service
+      Requires=docker.service
+
+      [Service]
+      TimeoutStartSec=0
+      Restart=always
+      ExecStartPre=-/usr/bin/docker stop mitarbeiter-app
+      ExecStartPre=-/usr/bin/docker rm mitarbeiter-app
+      ExecStartPre=/usr/bin/docker pull burakadanir/mitarbeiterverwaltung:latest
+      ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8081 burakadanir/mitarbeiterverwaltung:latest
+
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  - systemctl daemon-reload
+  - systemctl enable mitarbeiterverwaltung.service
+  - systemctl start mitarbeiterverwaltung.service
