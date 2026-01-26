@@ -1,9 +1,9 @@
-name: AWS Fargate Deployment 
+name: AWS Fargate Deployment
 
 on:
   push:
     branches: ["main"]
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build-and-push-aws:
@@ -28,12 +28,12 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build -t $ECR_REGISTRY/mitarbeiter-backend:latest ./Code/mitarbeiterverwaltung
-          docker push $ECR_REGISTRY/mitarbeiter-backend:latest
+          docker build -t $ECR_REGISTRY/nikola/mitarbeiter-backend:latest ./Code/mitarbeiterverwaltung
+          docker push $ECR_REGISTRY/nikola/mitarbeiter-backend:latest
 
       - name: Build and Push Ticketverwaltung
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build -t $ECR_REGISTRY/ticket-backend:latest ./Code/ticketverwaltung 
-          docker push $ECR_REGISTRY/ticket-backend:latest
+          docker build -t $ECR_REGISTRY/nikola/ticket-backend:latest ./Code/ticketverwaltung 
+          docker push $ECR_REGISTRY/nikola/ticket-backend:latest
