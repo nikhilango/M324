@@ -45,6 +45,12 @@ jobs:
               --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-alb --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
               --query 'Listeners[0].ListenerArn' --output text)
             
+            if [ -z "$LISTENER_ARN" ] || [ "$LISTENER_ARN" == "None" ]; then
+              echo "❌ Error: No listener found on Load Balancer p4-alb."
+              echo "Please run 'terraform apply' in the deployment/ directory to create the infrastructure."
+              exit 1
+            fi
+            
             # Get current weights
             RULES=$(aws elbv2 describe-rules --listener-arn $LISTENER_ARN --query 'Rules[0].Actions[0].ForwardConfig.TargetGroups')
             
@@ -66,6 +72,11 @@ jobs:
           LISTENER_ARN=$(aws elbv2 describe-listeners \
             --load-balancer-arn $(aws elbv2 describe-load-balancers --names p4-alb --query 'LoadBalancers[0].LoadBalancerArn' --output text) \
             --query 'Listeners[0].ListenerArn' --output text)
+
+          if [ -z "$LISTENER_ARN" ] || [ "$LISTENER_ARN" == "None" ]; then
+            echo "❌ Error: Listener ARN is missing. Infrastructure might be out of sync."
+            exit 1
+          fi
 
           echo "blue_arn=$BLUE_ARN" >> $GITHUB_OUTPUT
           echo "green_arn=$GREEN_ARN" >> $GITHUB_OUTPUT
