@@ -60,3 +60,25 @@ resource "aws_lb_listener" "http" {
     }
   }
 }
+
+resource "aws_instance" "blue" {
+  ami           = "ami-0e35ddab05955cf57"
+  instance_type = "t3.micro"
+  subnet_id     = aws_subnet.sub1.id
+  user_data     = file("cloud-config.yaml")
+
+  iam_instance_profile = "LabInstanceProfile"
+
+  tags = { Name = "App-Blue" }
+}
+
+resource "aws_instance" "green" {
+  ami           = "ami-0e35ddab05955cf57"
+  instance_type = "t3.micro"
+  subnet_id     = aws_subnet.sub2.id
+  user_data     = file("cloud-config.yaml")
+
+  iam_instance_profile = "LabInstanceProfile"
+
+  tags = { Name = "App-Green" }
+}
