@@ -1,9 +1,21 @@
 provider "aws" {
-  region = "eu-central-1"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_subnet" "sub1" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
+}
+
+resource "aws_subnet" "sub2" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "us-east-1b"
 }
 
 resource "aws_lb" "app_alb" {
@@ -13,20 +25,20 @@ resource "aws_lb" "app_alb" {
 }
 
 resource "aws_lb_target_group" "blue" {
-  name = "tg-blue"
-  port = 8080
+  name     = "tg-blue"
+  port     = 8080
   protocol = "HTTP"
-  vpc_id = aws_vpc.main.id
+  vpc_id   = aws_vpc.main.id
   health_check {
     path = "/api/employees"
   }
 }
 
 resource "aws_lb_target_group" "green" {
-  name = "tg-green"
-  port = 8080
+  name     = "tg-green"
+  port     = 8080
   protocol = "HTTP"
-  vpc_id = aws_vpc.main.id
+  vpc_id   = aws_vpc.main.id
 }
 
 resource "aws_lb_listener" "http" {
