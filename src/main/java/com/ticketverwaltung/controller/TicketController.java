@@ -20,6 +20,8 @@ import com.ticketverwaltung.repository.TicketRepository;
 public class TicketController {
 
     private final TicketService ticketService;
+    private final TicketRepository ticketRepository;
+
 
     public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
