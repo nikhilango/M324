@@ -20,7 +20,7 @@ write_files:
       ExecStartPre=-/usr/bin/docker stop mitarbeiter-app
       ExecStartPre=-/usr/bin/docker rm mitarbeiter-app
       ExecStartPre=/usr/bin/docker pull burakadanir/mitarbeiterverwaltung:latest
-      ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8081 burakadanir/mitarbeiterverwaltung:latest
+      ExecStart=/usr/bin/docker run --name mitarbeiter-app -p 8080:8080 burakadanir/mitarbeiterverwaltung:latest
 
       [Install]
       WantedBy=multi-user.target
