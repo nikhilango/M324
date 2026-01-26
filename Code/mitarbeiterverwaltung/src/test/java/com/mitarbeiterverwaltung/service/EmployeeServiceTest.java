@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -18,8 +19,10 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit Tests für die EmployeeService-Klasse.
- * Die Tests sind isoliert, indem das EmployeeRepository mit Mockito gemockt wird.
- * Dadurch wird die Geschäftslogik der Service-Schicht unabhängig von der Datenbank getestet.
+ * Die Tests sind isoliert, indem das EmployeeRepository mit Mockito gemockt
+ * wird.
+ * Dadurch wird die Geschäftslogik der Service-Schicht unabhängig von der
+ * Datenbank getestet.
  */
 @ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTest {
@@ -31,8 +34,10 @@ public class EmployeeServiceTest {
     private EmployeeService employeeService;
 
     /**
-     * Testfall für User Story 1 (Happy Path): Erstellung eines gültigen Mitarbeiters.
-     * Stellt sicher, dass die createEmployee-Methode eine neue Employee-Entität mit einer
+     * Testfall für User Story 1 (Happy Path): Erstellung eines gültigen
+     * Mitarbeiters.
+     * Stellt sicher, dass die createEmployee-Methode eine neue Employee-Entität mit
+     * einer
      * automatisch generierten, eindeutigen ID erstellt und speichert.
      */
     @Test
@@ -55,7 +60,8 @@ public class EmployeeServiceTest {
     }
 
     /**
-     * Testfall für User Story 2 (Happy Path): Auslesen aller Mitarbeiter, wenn welche vorhanden sind.
+     * Testfall für User Story 2 (Happy Path): Auslesen aller Mitarbeiter, wenn
+     * welche vorhanden sind.
      * Stellt sicher, dass alle Mitarbeiter vom Repository zurückgegeben werden.
      */
     @Test
@@ -74,7 +80,8 @@ public class EmployeeServiceTest {
     }
 
     /**
-     * Testfall für User Story 2 (Sad Path): Auslesen aller Mitarbeiter, wenn keine vorhanden sind.
+     * Testfall für User Story 2 (Sad Path): Auslesen aller Mitarbeiter, wenn keine
+     * vorhanden sind.
      * Stellt sicher, dass eine leere Liste zurückgegeben wird.
      */
     @Test
@@ -86,5 +93,29 @@ public class EmployeeServiceTest {
         assertNotNull(result);
         assertTrue(result.isEmpty());
         verify(employeeRepository, times(1)).findAll();
+    }
+
+    @Test
+    void findById_employeeExists_returnsEmployee() {
+        String id = "123";
+        Employee emp = new Employee(id, "Max", "Muster", LocalDate.now(), 3);
+        when(employeeRepository.findById(id)).thenReturn(Optional.of(emp));
+
+        Optional<Employee> result = employeeService.findById(id);
+
+        assertTrue(result.isPresent());
+        assertEquals("Max", result.get().getFirstName());
+        verify(employeeRepository, times(1)).findById(id);
+    }
+
+    @Test
+    void findById_employeeDoesNotExist_returnsEmptyOptional() {
+        String id = "999";
+        when(employeeRepository.findById(id)).thenReturn(Optional.empty());
+
+        Optional<Employee> result = employeeService.findById(id);
+
+        assertFalse(result.isPresent());
+        verify(employeeRepository, times(1)).findById(id);
     }
 }

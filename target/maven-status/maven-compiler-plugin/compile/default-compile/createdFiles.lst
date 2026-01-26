@@ -1,8 +1,0 @@
-com/ticketverwaltung/model/TicketStatus.class
-com/ticketverwaltung/model/Ticket.class
-com/ticketverwaltung/repository/TicketRepository.class
-com/ticketverwaltung/controller/TicketController.class
-com/ticketverwaltung/dto/EmployeeResponseDTO.class
-com/ticketverwaltung/service/TicketService.class
-com/ticketverwaltung/TicketverwaltungApplication.class
-com/ticketverwaltung/dto/TicketCreateDTO.class
